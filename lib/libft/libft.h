@@ -488,7 +488,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
  * @param fd File descriptor to read from
  * @return Read line or NULL if nothing else to read or an error accurred
 */
-char		*get_next_line(int fd);
+char	*get_next_line(int fd);
 
 /**
  * @brief Free and assign NULL to 'ptr'
@@ -496,7 +496,7 @@ char		*get_next_line(int fd);
  * @param ptr The pointer to reset
  * @return NULL
 */
-void		*reset_ptr(void *ptr);
+void	*reset_ptr(void *ptr);
 
 /**
  * @brief Write output to the standard to stdout
@@ -504,6 +504,6 @@ void		*reset_ptr(void *ptr);
  * @param input The format string
  * @return The n of printed characters
 */
-int	ft_printf(const char *input, ...);
+int		ft_printf(const char *input, ...);
 
 #endif

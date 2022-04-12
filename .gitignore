@@ -1,1 +1,8 @@
-./obj
+obj
+bin
+compile_flags.txt
+.clang-format
+.ccls
+.ccls-cache
+.vscode
+debug
