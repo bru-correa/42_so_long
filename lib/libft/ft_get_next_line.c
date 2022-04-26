@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 15:40:05 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/04/11 21:44:17 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/04/26 14:52:59 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ char	*get_next_line(int fd)
 	line = get_line(text);
 	free(text);
 	if (line == NULL)
+	{
 		line = reset_ptr(line);
+		remainder[fd] = NULL;
+	}
 	return (line);
 }
 

@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 23:41:52 by bcorrea-          #+#    #+#             */
-/*   Updated: 2021/09/28 13:03:29 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/04/26 14:24:18 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ size_t	ft_strlen(const char *s)
 {
 	int	len;
 
+	if (!s)
+		return (0);
 	len = 0;
 	while (s[len])
 		len++;

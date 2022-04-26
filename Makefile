@@ -17,19 +17,26 @@ LIB_DIR				= ./lib
 LIBFT_DIR			= $(LIB_DIR)/libft
 LIBMLX_DIR			= $(LIB_DIR)/libmlx
 
-FILENAMES			= handle_input render update
+FILENAMES			= handle_input render update read_map
 SRC_FILES			= $(patsubst %, $(SRC_DIR)/%.c, $(FILENAMES))
 OBJ_FILES			= $(patsubst %, $(OBJ_DIR)/%.o, $(FILENAMES))
 MAIN				= $(APPS_DIR)/$(NAME).c
 PROGRAM				= $(BIN_DIR)/$(NAME)
 
+# TESTS
+TESTS_DIR			= ./tests
+TESTS_MAIN			= $(TESTS_DIR)/tests.c
+TESTS				= $(TESTS_DIR)/tests
+
 all:				$(NAME)
 
-debug:				$(OBJ_DIR) $(BIN_DIR) $(OBJ_FILES) libft libmlx
+required:			$(OBJ_DIR) $(BIN_DIR) $(OBJ_FILES) libft libmlx
+
+debug:				required
 					$(CC) -g $(MAIN) $(OBJ_FILES) $(CFLAGS) $(CFLAGS_LIB) \
 						-o $(BIN_DIR)/debug
 
-$(NAME):			$(OBJ_DIR) $(BIN_DIR) $(OBJ_FILES) libft libmlx
+$(NAME):			required
 					$(CC) $(MAIN) $(OBJ_FILES) $(CFLAGS) $(CFLAGS_LIB) \
 						-o $(PROGRAM)
 
@@ -60,4 +67,13 @@ fclean:				clean
 					$(MAKE) -C $(LIBFT_DIR) fclean
 					rm -f $(PROGRAM)
 
-.PHONY:	all libft libmlx run clean fclean re debug
+# TESTS [REMOVE LATER]
+tests:				required
+					$(CC) -g $(TESTS_MAIN) $(OBJ_FILES) $(CFLAGS) \
+					$(CFLAGS_LIB) -o $(TESTS)
+
+runt:				tests
+					valgrind -q --leak-check=full --show-leak-kinds=all \
+						-s --track-origins=yes $(TESTS)
+
+.PHONY:	all libft libmlx run clean fclean re debug test runt

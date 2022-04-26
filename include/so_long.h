@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:44:02 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/04/12 17:19:18 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/04/25 17:42:30 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ typedef struct s_data
 	int			steps;
 	int			coins_left;
 	t_game_obj	*game_objs;
-	t_game_obj	player; //HACK Just for quick testing
+	t_game_obj	player;
 	t_input		input;
-	t_tile		*bg_tiles;
-	t_collider	*bg_colliders;
+	t_tile		*map_tiles;
+	t_collider	*map_colliders;
 }	t_data;
 
 int		update(t_data *data);
@@ -86,5 +86,8 @@ int		render(t_data *data);
 int		handle_keypress(int keysym, t_data *data);
 int		handle_keyrelease(int keysym, t_data *data);
 void	*create_img_ptr(t_data data, char *file_path);
+t_input	init_input(void);
+int		count_file_lines(char *map_path);
+char	**create_map(char *map_path);
 
 #endif

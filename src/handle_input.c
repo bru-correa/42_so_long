@@ -42,3 +42,16 @@ int	handle_keyrelease(int keysym, t_data *data)
 		data->input.up = 0;
 	return (0);
 }
+
+t_input	init_input(void)
+{
+	t_input	input;
+	input.direction.x = 0;
+	input.direction.y = 0;
+	input.right = 0;
+	input.left = 0;
+	input.up = 0;
+	input.down = 0;
+	input.attack = 0;
+	return (input);
+}
