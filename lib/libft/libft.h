@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 19:18:57 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/03/31 01:19:09 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/04/26 18:19:12 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -488,15 +488,22 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
  * @param fd File descriptor to read from
  * @return Read line or NULL if nothing else to read or an error accurred
 */
-char	*get_next_line(int fd);
+char	*ft_get_next_line(int fd);
 
 /**
  * @brief Free and assign NULL to 'ptr'
  *
- * @param ptr The pointer to reset
+ * @param ptr The reference to the pointer to reset
  * @return NULL
 */
-void	*reset_ptr(void *ptr);
+void	ft_reset_ptr(void **ptr);
+
+/**
+ * @brief Free and assign NULL to 'str'
+ *
+ * @param str The reference to the string to reset
+*/
+void	ft_reset_str(char **str);
 
 /**
  * @brief Write output to the standard to stdout

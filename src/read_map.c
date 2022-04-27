@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:05:48 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/04/26 14:11:49 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/04/26 17:46:18 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ int	count_file_lines(char *map_path)
 	if (fd < 0)
 		return (-1);
 	counter = 0;
-	line = get_next_line(fd);
+	line = ft_get_next_line(fd);
 	while (line != NULL)
 	{
 		free(line);
-		line = get_next_line(fd);
+		line = ft_get_next_line(fd);
 		counter++;
 	}
 	close(fd);
@@ -45,7 +45,7 @@ static char	**get_map_from_file(int fd, int map_height)
 	row = 0;
 	while (row < map_height)
 	{
-		map[row] = get_next_line(fd);
+		map[row] = ft_get_next_line(fd);
 		row++;
 	}
 	map[row] = NULL;

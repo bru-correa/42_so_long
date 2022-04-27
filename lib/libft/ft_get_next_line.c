@@ -6,18 +6,18 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 15:40:05 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/04/26 14:52:59 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/04/27 14:10:41 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*get_text(int fd, char *remainder);
+static char	*get_text(int fd, char **remainder);
 static char	*read_file(int fd, char *total_buffer);
 static char	*get_line(char *text);
 static char	*get_remainder(char *text);
 
-char	*get_next_line(int fd)
+char	*ft_get_next_line(int fd)
 {
 	char			*line;
 	char			*text;
@@ -28,7 +28,7 @@ char	*get_next_line(int fd)
 	if (ft_strchr(remainder[fd], '\n') != NULL)
 		text = remainder[fd];
 	else
-		text = get_text(fd, remainder[fd]);
+		text = get_text(fd, &remainder[fd]);
 	if (text == NULL)
 		return (NULL);
 	remainder[fd] = get_remainder(text);
@@ -36,24 +36,27 @@ char	*get_next_line(int fd)
 	free(text);
 	if (line == NULL)
 	{
-		line = reset_ptr(line);
-		remainder[fd] = NULL;
+		ft_reset_str(&line);
+		ft_reset_str(&remainder[fd]);
 	}
 	return (line);
 }
 
 /* Get text from remainder or from fd */
-static char	*get_text(int fd, char *remainder)
+static char	*get_text(int fd, char **remainder)
 {
 	char	*text;
 
-	if (remainder == NULL)
+	if (*remainder == NULL)
 		text = ft_strdup("");
 	else
-		text = remainder;
+	{
+		text = *remainder;
+		*remainder = NULL;
+	}
 	text = read_file(fd, text);
 	if (*text == '\0')
-		text = reset_ptr(text);
+		ft_reset_str(&text);
 	return (text);
 }
 
@@ -76,7 +79,7 @@ static char	*read_file(int fd, char *total_buffer)
 		current_buffer[read_len] = '\0';
 		previous_buffer = total_buffer;
 		total_buffer = ft_strjoin(previous_buffer, current_buffer);
-		previous_buffer = reset_ptr(previous_buffer);
+		ft_reset_str(&previous_buffer);
 		if (ft_strchr(total_buffer, '\n') != NULL)
 			break ;
 	}

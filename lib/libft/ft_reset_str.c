@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_reset_ptr.c                                     :+:      :+:    :+:   */
+/*   ft_reset_str.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/25 15:39:35 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/04/26 17:45:25 by bcorrea-         ###   ########.fr       */
+/*   Created: 2022/04/26 18:16:42 by bcorrea-          #+#    #+#             */
+/*   Updated: 2022/04/26 18:17:30 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_reset_ptr(void **ptr)
+void	ft_reset_str(char **str)
 {
-	if (*ptr != NULL)
+	if (str != NULL)
 	{
-		free(*ptr);
-		*ptr = NULL;
+		free(*str);
+		*str = NULL;
 	}
 }
