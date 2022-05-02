@@ -17,7 +17,7 @@ LIB_DIR				= ./lib
 LIBFT_DIR			= $(LIB_DIR)/libft
 LIBMLX_DIR			= $(LIB_DIR)/libmlx
 
-FILENAMES			= handle_input render update read_map
+FILENAMES			= handle_input render update read_map validate_map
 SRC_FILES			= $(patsubst %, $(SRC_DIR)/%.c, $(FILENAMES))
 OBJ_FILES			= $(patsubst %, $(OBJ_DIR)/%.o, $(FILENAMES))
 MAIN				= $(APPS_DIR)/$(NAME).c
@@ -44,7 +44,7 @@ $(OBJ_DIR):
 					mkdir -p $@
 
 $(OBJ_DIR)/%.o:		$(SRC_DIR)/%.c
-					$(CC) -c $< $(CFLAGS) -o $@
+					$(CC) -c -g $< $(CFLAGS) -o $@
 
 $(BIN_DIR):
 					mkdir -p $@
@@ -74,6 +74,6 @@ tests:				required
 
 runt:				tests
 					valgrind -q --leak-check=full --show-leak-kinds=all \
-						-s --track-origins=yes $(TESTS)
+						-s --track-origins=yes --verbose $(TESTS)
 
 .PHONY:	all libft libmlx run clean fclean re debug test runt

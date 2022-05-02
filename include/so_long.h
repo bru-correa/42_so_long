@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:44:02 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/04/25 17:42:30 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/02 17:01:40 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define SPRITE_SIZE 64
 # define MLX_ERROR 1
 # define FRAME_DELAY 1000
+# define TRUE 1
+# define FALSE 0
 
 /* Structs */
 
@@ -81,13 +83,22 @@ typedef struct s_data
 	t_collider	*map_colliders;
 }	t_data;
 
+typedef struct s_map
+{
+	char	**tilemap;
+	int		player_count;
+	int		exit_count;
+	int		collectible_count;
+}	t_map;
+
 int		update(t_data *data);
 int		render(t_data *data);
 int		handle_keypress(int keysym, t_data *data);
 int		handle_keyrelease(int keysym, t_data *data);
 void	*create_img_ptr(t_data data, char *file_path);
 t_input	init_input(void);
-int		count_file_lines(char *map_path);
-char	**create_map(char *map_path);
+t_map	get_map(char *tilemap_path);
+void	free_tilemap(char **map);
+int		is_map_valid(t_map map);
 
 #endif
