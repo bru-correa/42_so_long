@@ -8,3 +8,4 @@ compile_flags.txt
 debug
 *.o
 *.a
+tests
