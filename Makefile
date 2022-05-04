@@ -18,6 +18,7 @@ LIBFT_DIR			= $(LIB_DIR)/libft
 LIBMLX_DIR			= $(LIB_DIR)/libmlx
 
 FILENAMES			= handle_input render update read_map validate_map
+FILENAMES			+= is_map_walled
 SRC_FILES			= $(patsubst %, $(SRC_DIR)/%.c, $(FILENAMES))
 OBJ_FILES			= $(patsubst %, $(OBJ_DIR)/%.o, $(FILENAMES))
 MAIN				= $(APPS_DIR)/$(NAME).c

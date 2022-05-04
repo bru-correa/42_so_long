@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 15:07:50 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/02 17:02:07 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/04 14:51:03 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ int	main(void)
 	test_map_validation("wrong/invalid_exit.ber");
 	test_map_validation("wrong/invalid_player.ber");
 	test_map_validation("wrong/empty_map.ber");
+	test_map_validation("wrong/invalid_walls_01.ber");
+	test_map_validation("wrong/invalid_walls_02.ber");
+	test_map_validation("wrong/invalid_walls_03.ber");
+	test_map_validation("wrong/invalid_walls_04.ber");
+	test_map_validation("wrong/invalid_walls_05.ber");
+	test_map_validation("wrong/2lines_map.ber");
 	return (0);
 }
 

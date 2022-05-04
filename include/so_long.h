@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:44:02 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/02 17:01:40 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/04 15:38:41 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ typedef struct s_map
 	int		player_count;
 	int		exit_count;
 	int		collectible_count;
+	int		width;
+	int		height;
 }	t_map;
 
 int		update(t_data *data);
@@ -100,5 +102,6 @@ t_input	init_input(void);
 t_map	get_map(char *tilemap_path);
 void	free_tilemap(char **map);
 int		is_map_valid(t_map map);
+int		is_map_walled(t_map map);
 
 #endif

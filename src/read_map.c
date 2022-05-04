@@ -6,14 +6,14 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:05:48 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/02 17:01:44 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/03 18:44:41 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <fcntl.h>
 
-static char	**get_tilemap(char *tilemap_path);
+static char	**get_tilemap(char *tilemap_path, int tilemap_height);
 static int	get_tilemap_height(char *tilemap_path);
 static int	count_file_lines(char *map_path);
 
@@ -21,9 +21,11 @@ t_map	get_map(char *tilemap_path)
 {
 	t_map	map;
 
-	map.tilemap = get_tilemap(tilemap_path);
+	map.height = get_tilemap_height(tilemap_path);
+	map.tilemap = get_tilemap(tilemap_path, map.height);
 	if (map.tilemap == NULL)
 		return (map);
+	map.width = ft_strlen(map.tilemap[0]) - 1;
 	map.collectible_count = 0;
 	map.exit_count = 0;
 	map.player_count = 0;
@@ -83,14 +85,12 @@ static int	get_tilemap_height(char *tilemap_path)
 }
 
 /* The last tilemap row will be NULL */
-static char	**get_tilemap(char *tilemap_path)
+static char	**get_tilemap(char *tilemap_path, int tilemap_height)
 {
-	int		tilemap_height;
 	int		fd;
 	char	**tilemap;
 	int		row;
 
-	tilemap_height = get_tilemap_height(tilemap_path);
 	if (tilemap_height == 0)
 		return (NULL);
 	tilemap = malloc((tilemap_height + 1) * sizeof(char *));
