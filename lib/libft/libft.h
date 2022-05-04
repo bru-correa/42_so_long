@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 19:18:57 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/04/26 18:19:12 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/04 15:15:32 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+/* ***** MACROS ***** */
+
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
@@ -23,6 +25,16 @@
 # ifndef OPEN_MAX
 #  define OPEN_MAX 1024
 # endif
+
+# ifndef TRUE
+#  define TRUE 1
+# endif
+
+# ifndef FALSE
+#  define FALSE 0
+# endif
+
+/* ***** Structs ***** */
 
 typedef struct s_list
 {
@@ -512,5 +524,24 @@ void	ft_reset_str(char **str);
  * @return The n of printed characters
 */
 int		ft_printf(const char *input, ...);
+
+/**
+ * @brief Check if the char 'c' is equal to one of the valid chars
+ *
+ * @param c The char to be validated
+ * @param valid_chars The array of valid chars
+ * @return 1 if true, 0 if false
+*/
+int		ft_is_char_valid(char c, char *valid_chars);
+
+/**
+ * @brief Check if the chars in the string 'str' are equal to one of the valid
+ * chars
+ *
+ * @param str The string to be validated
+ * @param valid_chars The array of valid chars
+ * @return 1 if true, 0 if false
+*/
+int		ft_is_str_valid(char *str, char *valid_chars);
 
 #endif
