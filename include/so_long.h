@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:44:02 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/04 15:38:41 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/05 17:33:50 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,8 @@
 # define WINDOW_WIDTH 1024
 # define WINDOW_HEIGHT 896
 # define SPRITE_SIZE 64
-# define MLX_ERROR 1
+# define ERROR 1
 # define FRAME_DELAY 1000
-# define TRUE 1
-# define FALSE 0
 
 /* Structs */
 
@@ -70,7 +68,7 @@ typedef struct s_input
 	int			attack;
 }	t_input;
 
-typedef struct s_data
+typedef struct s_game
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
@@ -81,7 +79,7 @@ typedef struct s_data
 	t_input		input;
 	t_tile		*map_tiles;
 	t_collider	*map_colliders;
-}	t_data;
+}	t_game;
 
 typedef struct s_map
 {
@@ -93,15 +91,16 @@ typedef struct s_map
 	int		height;
 }	t_map;
 
-int		update(t_data *data);
-int		render(t_data *data);
-int		handle_keypress(int keysym, t_data *data);
-int		handle_keyrelease(int keysym, t_data *data);
-void	*create_img_ptr(t_data data, char *file_path);
+int		update(t_game *data);
+int		render(t_game *data);
+int		handle_keypress(int keysym, t_game *data);
+int		handle_keyrelease(int keysym, t_game *data);
+void	*create_img_ptr(t_game *data, char *file_path);
 t_input	init_input(void);
 t_map	get_map(char *tilemap_path);
-void	free_tilemap(char **map);
+void	free_tilemap(char **tilemap);
 int		is_map_valid(t_map map);
 int		is_map_walled(t_map map);
+void	exit_game(t_game *game);
 
 #endif

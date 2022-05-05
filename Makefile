@@ -18,7 +18,7 @@ LIBFT_DIR			= $(LIB_DIR)/libft
 LIBMLX_DIR			= $(LIB_DIR)/libmlx
 
 FILENAMES			= handle_input render update get_map validate_map
-FILENAMES			+= is_map_walled
+FILENAMES			+= is_map_walled exit_game
 SRC_FILES			= $(patsubst %, $(SRC_DIR)/%.c, $(FILENAMES))
 OBJ_FILES			= $(patsubst %, $(OBJ_DIR)/%.o, $(FILENAMES))
 MAIN				= $(APPS_DIR)/$(NAME).c
@@ -28,6 +28,8 @@ PROGRAM				= $(BIN_DIR)/$(NAME)
 TESTS_DIR			= ./tests
 TESTS_MAIN			= $(TESTS_DIR)/tests.c
 TESTS				= $(TESTS_DIR)/tests
+VALGRIND			= valgrind -q --leak-check=full --show-leak-kinds=all \
+						-s --track-origins=yes --verbose
 
 all:				$(NAME)
 
@@ -74,7 +76,9 @@ tests:				required
 					$(CFLAGS_LIB) -o $(TESTS)
 
 runt:				tests
-					valgrind -q --leak-check=full --show-leak-kinds=all \
-						-s --track-origins=yes --verbose $(TESTS)
+					$(VALGRIND) $(TESTS)
+
+runv:				all
+					$(VALGRIND) $(PROGRAM) resources/maps/default.ber
 
 .PHONY:	all libft libmlx run clean fclean re debug test runt

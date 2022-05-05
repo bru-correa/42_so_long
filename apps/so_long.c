@@ -6,72 +6,86 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:35:56 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/04/14 16:43:52 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/05 20:06:33 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static t_data		create_game_data(void);
-// static t_game_obj	create_game_objs(t_data data);
-static t_game_obj	create_player(t_data data);
-static void			enter_game_loop(t_data data);
+static int			create_game_data(t_game *game, char *tilemap_path);
+// static t_game_obj	create_game_objs(t_game game);
+static t_game_obj	create_player(t_game *game);
+static void			enter_game_loop(t_game *game);
 
 /* HACK Added player just for testing */
-int	main(void)
+int	main(int argc, char *argv[])
 {
-	t_data	data;
+	t_game	game;
+	int		error_code;
 
-	data = create_game_data();
-	if (data.mlx_ptr == NULL || data.win_ptr == NULL)
+	if (argc != 2)
 	{
-		free(data.win_ptr);
-		return (MLX_ERROR);
+		ft_printf("Error\nYou must pass the map path as argument");
+		return (ERROR);
 	}
-	data.player = create_player(data);
-	enter_game_loop(data);
-	mlx_destroy_display(data.mlx_ptr);
-	free(data.mlx_ptr);
+	error_code = create_game_data(&game, argv[1]);
+	if (error_code == ERROR)
+		return (ERROR);
+	enter_game_loop(&game);
 	return (0);
 }
 
-static t_data	create_game_data(void)
+/* HACK Just freeing tilemap here to not leak memory for testing */
+static int	create_game_data(t_game *game, char *tilemap_path)
 {
-	t_data	data;
+	t_map	map;
 
-	data.mlx_ptr = mlx_init();
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,
-			"so_long");
-	data.player = create_player(data);
-	data.steps = 0;
-	data.input = init_input();
-	return (data);
+	map = get_map(tilemap_path);
+	if (map.tilemap == NULL)
+		return (ERROR);
+	free_tilemap(map.tilemap);
+	game->mlx_ptr = mlx_init();
+	if (game->mlx_ptr == NULL)
+		return (ERROR);
+	game->win_ptr = mlx_new_window(game->mlx_ptr, map.width * SPRITE_SIZE,
+			map.height * SPRITE_SIZE, "so_long");
+	if (game->win_ptr == NULL)
+	{
+		free(game->win_ptr);
+		return (ERROR);
+	}
+	game->player = create_player(game);
+	game->steps = 0;
+	game->input = init_input();
+	return (0);
 }
 
-static t_game_obj	create_player(t_data data)
+static t_game_obj	create_player(t_game *game)
 {
 	t_game_obj	player;
 
 	player.position.x = 0;
 	player.position.y = 0;
-	player.img_ptr = create_img_ptr(data,
+	player.img_ptr = create_img_ptr(game,
 			"./resources/sprites/player/link_front_0.xpm");
 	player.tag = Player;
 	return (player);
 }
 
 /* HACK Just testing with one game object */
-// static t_game_obj	create_game_objs(t_data data)
+// static t_game_obj	create_game_objs(t_game game)
 // {
-// 	data.player.x = 0;
-// 	data.player.y = 0;
-// 	data.player.img_ptr = create_img_ptr(data, "resources/sprites/player/hero1.xpm");
+// 	game.player.x = 0;
+// 	game.player.y = 0;
+// 	game.player.img_ptr = create_img_ptr(game,
+		// "resources/sprites/player/hero1.xpm");
 // }
 
-static void	enter_game_loop(t_data data)
+static void	enter_game_loop(t_game *game)
 {
-	mlx_loop_hook(data.mlx_ptr, &update, &data); mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
-	mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &handle_keyrelease,
-		&data);
-	mlx_loop(data.mlx_ptr);
+	mlx_loop_hook(game->mlx_ptr, &update, game);
+	mlx_hook(game->win_ptr, KeyPress, KeyPressMask, &handle_keypress, game);
+	mlx_hook(game->win_ptr, KeyRelease, KeyReleaseMask, &handle_keyrelease,
+		game);
+	mlx_loop(game->mlx_ptr);
 }

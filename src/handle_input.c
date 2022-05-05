@@ -12,40 +12,41 @@
 
 #include "so_long.h"
 
-int	handle_keypress(int keysym, t_data *data)
+int	handle_keypress(int keysym, t_game *game)
 {
 	if (keysym == XK_d)
-		data->input.right = 1;
+		game->input.right = 1;
 	if (keysym == XK_a)
-		data->input.left = 1;
+		game->input.left = 1;
 	if (keysym == XK_s)
-		data->input.down = 1;
+		game->input.down = 1;
 	if (keysym == XK_w)
-		data->input.up = 1;
+		game->input.up = 1;
 	if (keysym == XK_Escape)
 	{
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-		data->win_ptr = NULL;
+		exit_game(game);
+		return (0);
 	}
 	return (0);
 }
 
-int	handle_keyrelease(int keysym, t_data *data)
+int	handle_keyrelease(int keysym, t_game *game)
 {
 	if (keysym == XK_d)
-		data->input.right = 0;
+		game->input.right = 0;
 	if (keysym == XK_a)
-		data->input.left = 0;
+		game->input.left = 0;
 	if (keysym == XK_s)
-		data->input.down = 0;
+		game->input.down = 0;
 	if (keysym == XK_w)
-		data->input.up = 0;
+		game->input.up = 0;
 	return (0);
 }
 
 t_input	init_input(void)
 {
 	t_input	input;
+
 	input.direction.x = 0;
 	input.direction.y = 0;
 	input.right = 0;
