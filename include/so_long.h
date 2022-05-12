@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:44:02 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/05 17:33:50 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/11 20:46:25 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@
 
 # define WINDOW_WIDTH 1024
 # define WINDOW_HEIGHT 896
-# define SPRITE_SIZE 64
+# define TILE_SIZE 64
 # define ERROR 1
 # define FRAME_DELAY 1000
 
 /* Structs */
 
-typedef enum e_tag {Player, Pickup, Enemy, Wall, Exit, Dead}	t_tag;
+typedef enum e_tag {Player, Pickup, Wall, Exit}	t_tag;
 
 typedef struct s_vector2d
 {
@@ -37,6 +37,7 @@ typedef struct s_vector2d
 	int	y;
 }	t_vector2d;
 
+//HACK Maybe add a collider to game_obj, moving tag and size to colllider
 typedef struct s_game_obj
 {
 	void		*img_ptr;
@@ -51,13 +52,6 @@ typedef struct s_tile
 	t_vector2d	position;
 }	t_tile;
 
-typedef struct s_collider
-{
-	t_vector2d	position;
-	t_vector2d	size;
-	t_tag		tag;
-}	t_collider;
-
 typedef struct s_input
 {
 	t_vector2d	direction;
@@ -68,17 +62,28 @@ typedef struct s_input
 	int			attack;
 }	t_input;
 
+typedef struct s_assets
+{
+	void	*floor_img;
+	void	*wall_img;
+	void	*player_img;
+	void	*collectible_img;
+	void	*exit_img;
+}	t_assets;
+
 typedef struct s_game
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	int			steps;
-	int			coins_left;
-	t_game_obj	*game_objs;
+	t_assets	assets;
+	int			steps_counter;
+	int			collectible_left;
+	t_game_obj	*objs;
 	t_game_obj	player;
 	t_input		input;
-	t_tile		*map_tiles;
-	t_collider	*map_colliders;
+	t_tile		*tiles;
+	char		**map;
+	t_vector2d	map_size;
 }	t_game;
 
 typedef struct s_map
@@ -91,16 +96,20 @@ typedef struct s_map
 	int		height;
 }	t_map;
 
-int		update(t_game *data);
-int		render(t_game *data);
-int		handle_keypress(int keysym, t_game *data);
-int		handle_keyrelease(int keysym, t_game *data);
-void	*create_img_ptr(t_game *data, char *file_path);
-t_input	init_input(void);
-t_map	get_map(char *tilemap_path);
-void	free_tilemap(char **tilemap);
-int		is_map_valid(t_map map);
-int		is_map_walled(t_map map);
-void	exit_game(t_game *game);
+int			update(t_game *game);
+int			render(t_game *game);
+int			handle_keypress(int keysym, t_game *game);
+int			handle_keyrelease(int keysym, t_game *game);
+t_input		init_input(void);
+int			load_assets(t_game *game);
+t_vector2d	get_map_size(char *map_path);
+char		**get_map(char *map_path, t_vector2d map_size);
+void		free_map(char **map);
+int			is_map_valid(char **map, t_vector2d map_size);
+int			is_map_chars_valid(char **map, t_vector2d map_size);
+int			is_map_objs_count_valid(char **map, t_vector2d map_size);
+int			is_map_walled(char **map, t_vector2d map_size);
+void		render_map(t_game *game);
+void		exit_game(t_game *game);
 
 #endif

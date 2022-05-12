@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 17:14:17 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/05 20:06:29 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/11 20:35:06 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ void	exit_game(t_game *game)
 	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
 	mlx_destroy_display(game->mlx_ptr);
 	free(game->mlx_ptr);
+	free_map(game->map);
 	exit(0);
 }

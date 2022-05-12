@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   free_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 19:37:51 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/11 16:00:36 by bcorrea-         ###   ########.fr       */
+/*   Created: 2022/05/11 19:21:26 by bcorrea-          #+#    #+#             */
+/*   Updated: 2022/05/11 19:21:58 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	render(t_game *game)
+void	free_map(char **map)
 {
-	if (game->win_ptr == NULL)
-		return (ERROR);
-	mlx_clear_window(game->mlx_ptr, game->win_ptr);
-	render_map(game);
-	return (0);
+	int	row;
+
+	row = 0;
+	while (map[row] != NULL)
+	{
+		free(map[row]);
+		row++;
+	}
+	free(map);
 }

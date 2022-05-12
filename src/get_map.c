@@ -6,103 +6,49 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:05:48 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/04 16:26:49 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/11 20:43:12 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <fcntl.h>
 
-static char	**get_tilemap(char *tilemap_path, int tilemap_height);
-static int	get_tilemap_height(char *tilemap_path);
-static int	count_file_lines(char *map_path);
+static char	**get_map_from_file(char *map_path, int map_height);
 
-t_map	get_map(char *tilemap_path)
+char	**get_map(char *map_path, t_vector2d map_size)
 {
-	t_map	map;
+	char	**map;
 
-	map.height = get_tilemap_height(tilemap_path);
-	map.tilemap = get_tilemap(tilemap_path, map.height);
-	if (map.tilemap == NULL)
+	map = get_map_from_file(map_path, map_size.y);
+	if (map == NULL)
 		return (map);
-	map.width = ft_strlen(map.tilemap[0]) - 1;
-	map.collectible_count = 0;
-	map.exit_count = 0;
-	map.player_count = 0;
-	if (is_map_valid(map) == FALSE)
+	if (is_map_valid(map, map_size) == FALSE)
 	{
-		free_tilemap(map.tilemap);
-		map.tilemap = NULL;
+		free_map(map);
+		map = NULL;
 	}
 	return (map);
 }
 
-void	free_tilemap(char **tilemap)
-{
-	int	row;
-
-	row = 0;
-	while (tilemap[row] != NULL)
-	{
-		free(tilemap[row]);
-		row++;
-	}
-	free(tilemap);
-}
-
-static int	count_file_lines(char *tilemap_path)
-{
-	int		counter;
-	int		fd;
-	char	*line;
-
-	fd = open(tilemap_path, O_RDONLY);
-	if (fd < 0)
-		return (-1);
-	counter = 0;
-	line = ft_get_next_line(fd);
-	while (line != NULL)
-	{
-		free(line);
-		line = ft_get_next_line(fd);
-		counter++;
-	}
-	close(fd);
-	return (counter);
-}
-
-static int	get_tilemap_height(char *tilemap_path)
-{
-	int	tilemap_height;
-
-	tilemap_height = count_file_lines(tilemap_path);
-	if (tilemap_height <= 0)
-	{
-		ft_printf("Error\nMap file not found or the map is empty!\n");
-		return (0);
-	}
-	return (tilemap_height);
-}
-
-/* The last tilemap row will be NULL */
-static char	**get_tilemap(char *tilemap_path, int tilemap_height)
+/* The last map row will be NULL */
+static char	**get_map_from_file(char *map_path, int map_height)
 {
 	int		fd;
-	char	**tilemap;
+	char	**map;
 	int		row;
 
-	if (tilemap_height == 0)
+	if (map_height <= 0)
 		return (NULL);
-	tilemap = malloc((tilemap_height + 1) * sizeof(char *));
-	if (tilemap == NULL)
+	map = malloc((map_height + 1) * sizeof(char *));
+	if (map == NULL)
 		return (NULL);
-	fd = open(tilemap_path, O_RDONLY);
+	fd = open(map_path, O_RDONLY);
 	row = 0;
-	while (row <= tilemap_height)
+	while (row <= map_height)
 	{
-		tilemap[row] = ft_get_next_line(fd);
+		map[row] = ft_get_next_line(fd);
 		row++;
 	}
 	close(fd);
-	return (tilemap);
+	return (map);
 }

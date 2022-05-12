@@ -18,7 +18,9 @@ LIBFT_DIR			= $(LIB_DIR)/libft
 LIBMLX_DIR			= $(LIB_DIR)/libmlx
 
 FILENAMES			= handle_input render update get_map validate_map
-FILENAMES			+= is_map_walled exit_game
+FILENAMES			+= validate_map_walls validate_map_objs exit_game
+FILENAMES			+= load_assets get_map_size free_map render_map render_tile
+
 SRC_FILES			= $(patsubst %, $(SRC_DIR)/%.c, $(FILENAMES))
 OBJ_FILES			= $(patsubst %, $(OBJ_DIR)/%.o, $(FILENAMES))
 MAIN				= $(APPS_DIR)/$(NAME).c

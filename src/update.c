@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 19:21:21 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/05 17:23:05 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/06 18:14:58 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static void	update_player_direction(t_game *game);
 // {
 // 	static int	frame_counter = 0;
 
-// 	if (game->player.position.x <= WINDOW_WIDTH - SPRITE_SIZE
-// 		&& game->player.position.y <= WINDOW_HEIGHT - SPRITE_SIZE)
+// 	if (game->player.position.x <= WINDOW_WIDTH - TILE_SIZE
+// 		&& game->player.position.y <= WINDOW_HEIGHT - TILE_SIZE)
 // 	{
 // 		if (frame_counter == FRAME_DELAY)
 // 		{

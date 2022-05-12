@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 15:07:50 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/04 14:51:03 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/11 21:37:18 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <fcntl.h>
 
 void	test_map_validation(char *map_name);
-char	*get_tilemap_path(char *map_name);
+char	*get_map_path(char *map_name);
 
 int	main(void)
 {
@@ -38,30 +38,37 @@ int	main(void)
 	return (0);
 }
 
-char	*get_tilemap_path(char *map_name)
+char	*get_map_path(char *map_name)
 {
-	char	*tilemap_dir;
-	char	*tilemap_path;
+	char	*map_dir;
+	char	*map_path;
 
-	tilemap_dir = ft_strdup("./resources/maps/");
-	tilemap_path = ft_strjoin(tilemap_dir, map_name);
-	free(tilemap_dir);
-	return (tilemap_path);
+	map_dir = ft_strdup("./resources/maps/");
+	map_path = ft_strjoin(map_dir, map_name);
+	free(map_dir);
+	return (map_path);
 }
 
 void	test_map_validation(char *map_name)
 {
-	char	*tilemap_path;
-	t_map	map;
+	char		*map_path;
+	char		**map;
+	t_vector2d	map_size;
 
-	tilemap_path = get_tilemap_path(map_name);
-	map = get_map(tilemap_path);
-	if (map.tilemap != NULL)
+	map_path = get_map_path(map_name);
+	map_size = get_map_size(map_path);
+	if (map_size.x <= 0 || map_size.y <= 0)
+	{
+		ft_printf("MAP: %s\n", map_name);
+		return ;
+	}
+	map = get_map(map_path, map_size);
+	if (map != NULL)
 	{
 		ft_printf("The map is valid! (%s)\n", map_name);
-		free_tilemap(map.tilemap);
+		free_map(map);
 	}
 	else
 		ft_printf("MAP: %s\n", map_name);
-	free(tilemap_path);
+	free(map_path);
 }

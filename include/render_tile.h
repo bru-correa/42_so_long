@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render_tile.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 19:37:51 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/11 16:00:36 by bcorrea-         ###   ########.fr       */
+/*   Created: 2022/05/11 15:51:13 by bcorrea-          #+#    #+#             */
+/*   Updated: 2022/05/11 15:52:07 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#ifndef RENDER_TILE_H
+# define RENDER_TILE_H
 
-int	render(t_game *game)
-{
-	if (game->win_ptr == NULL)
-		return (ERROR);
-	mlx_clear_window(game->mlx_ptr, game->win_ptr);
-	render_map(game);
-	return (0);
-}
+# include "so_long.h"
+
+void	render_floor(t_game *game, t_vector2d position);
+void	render_wall(t_game *game, t_vector2d position);
+void	render_player(t_game *game, t_vector2d position);
+void	render_collectible(t_game *game, t_vector2d position);
+void	render_exit(t_game *game, t_vector2d position);
+
+#endif
