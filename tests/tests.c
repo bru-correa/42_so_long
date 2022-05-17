@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 15:07:50 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/16 17:25:26 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/17 21:13:31 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	test_map_validation(char *map_name)
 	if (map_size.x <= 0 || map_size.y <= 0)
 	{
 		ft_printf("MAP: %s\n", map_name);
+		free(map_path);
 		return ;
 	}
 	map = get_map(map_path, map_size);
