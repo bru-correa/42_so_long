@@ -6,12 +6,10 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 15:07:50 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/11 21:37:18 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/16 17:25:26 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "mlx.h"
 #include "so_long.h"
 #include <stdio.h>
 #include <fcntl.h>

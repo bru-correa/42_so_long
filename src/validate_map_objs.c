@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 19:00:35 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/11 19:06:10 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/16 15:57:26 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	is_map_chars_valid(char **map, t_vector2d map_size)
 	while (position.y < map_size.y)
 	{
 		position.x = 0;
-		current_char = map[position.y][position.x];
 		while (position.x < map_size.x)
 		{
+			current_char = map[position.y][position.x];
 			if (is_map_char_valid(current_char) == FALSE)
 				return (FALSE);
 			position.x++;
@@ -39,11 +39,20 @@ int	is_map_chars_valid(char **map, t_vector2d map_size)
 int	is_map_objs_count_valid(char **map, t_vector2d map_size)
 {
 	if (get_char_count(map, 'P', map_size) != 1)
+	{
+		ft_printf("Error\nThe map must have one player!\n");
 		return (FALSE);
-	else if (get_char_count(map, 'C', map_size) > 0)
+	}
+	else if (get_char_count(map, 'C', map_size) <= 0)
+	{
+		ft_printf("Error\nThe map must have at least one collectible!\n");
 		return (FALSE);
+	}
 	else if (get_char_count(map, 'E', map_size) != 1)
+	{
+		ft_printf("Error\nThe map must have one exit!\n");
 		return (FALSE);
+	}
 	return (TRUE);
 }
 
@@ -68,9 +77,9 @@ static int	get_char_count(char **map, char c, t_vector2d map_size)
 	while (position.y < map_size.y)
 	{
 		position.x = 0;
-		current_char = map[position.y][position.x];
 		while (position.x < map_size.x)
 		{
+			current_char = map[position.y][position.x];
 			if (current_char == c)
 				counter++;
 			position.x++;

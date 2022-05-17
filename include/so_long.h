@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:44:02 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/11 20:46:25 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/16 17:42:32 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define SO_LONG_H
 
 # include "libft.h"
-# include "mlx.h"
+# include <mlx.h>
 # include <stdlib.h>
 # include <X11/keysym.h>
 # include <X11/X.h>

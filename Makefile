@@ -1,11 +1,10 @@
-# TODO Use the linux version from mlx
 NAME				= so_long
 CC					= clang
 CFLAGS				= -Wall -Wextra -Werror $(INCLUDE)
 CFLAGS_LIB			= $(CFLAGS_LIBFT) $(CFLAGS_LIBMLX)
 CFLAGS_LIBFT		= -L $(LIBFT_DIR) -lft
-CFLAGS_LIBMLX		= -lX11 -lXext -L $(LIBMLX_DIR) -lmlx
-INCLUDE				= -I $(INCLUDE_DIR) -I $(LIBMLX_DIR) -I $(LIBFT_DIR)
+CFLAGS_LIBMLX		= -lX11 -lXext -lmlx
+INCLUDE				= -I $(INCLUDE_DIR) -I $(LIBFT_DIR)
 
 INCLUDE_DIR			= ./include
 SRC_DIR				= ./src
@@ -15,7 +14,7 @@ BIN_DIR				= ./bin
 LIB_DIR				= ./lib
 
 LIBFT_DIR			= $(LIB_DIR)/libft
-LIBMLX_DIR			= $(LIB_DIR)/libmlx
+# LIBMLX_DIR			= $(LIB_DIR)/libmlx
 
 FILENAMES			= handle_input render update get_map validate_map
 FILENAMES			+= validate_map_walls validate_map_objs exit_game
@@ -35,7 +34,7 @@ VALGRIND			= valgrind -q --leak-check=full --show-leak-kinds=all \
 
 all:				$(NAME)
 
-required:			$(OBJ_DIR) $(BIN_DIR) $(OBJ_FILES) libft libmlx
+required:			$(OBJ_DIR) $(BIN_DIR) $(OBJ_FILES) libft
 
 debug:				required
 					$(CC) -g $(MAIN) $(OBJ_FILES) $(CFLAGS) $(CFLAGS_LIB) \
@@ -57,8 +56,8 @@ $(BIN_DIR):
 libft:
 					$(MAKE) -C $(LIBFT_DIR)
 
-libmlx:
-					$(MAKE) -C $(LIBMLX_DIR)
+# libmlx:
+# 					$(MAKE) -C $(LIBMLX_DIR)
 
 run:				all
 					$(PROGRAM)
