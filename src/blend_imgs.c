@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 01:50:05 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/19 04:25:53 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/19 04:31:27 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,13 @@ static t_img_data	get_img_data(void *img_ptr)
 
 	img_data.ptr = img_ptr;
 	img_data.pixels = mlx_get_data_addr(img_data.ptr,
-			&img_data.bits_per_pixel, &img_data.line_size, img_data.endian);
+			&img_data.bits_per_pixel, &img_data.line_size, &img_data.endian);
 	return (img_data);
 }
 
 static t_img_data	merge_pixels(t_img_data img_front, t_img_data img_back)
 {
 	t_vector2d	position;
-	char		*current_pixel_front;
-	char		*current_pixel_back;
 
 	position.y = 0;
 	while (position.y < TILE_SIZE)
