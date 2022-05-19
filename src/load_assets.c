@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 15:08:14 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/11 21:09:44 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/19 01:49:46 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@ int	load_assets(t_game *game)
 	game->assets.collectible_img = create_img_ptr(game, COLLECTIBLE_PATH);
 	game->assets.exit_img = create_img_ptr(game, EXIT_PATH);
 	return (check_assets(game->assets));
+}
+
+/* TODO Try to free all the elements in assets in a loop */
+void	free_assets(t_game *game)
+{
+	mlx_destroy_image(game->mlx_ptr, game->assets.floor_img);
+	mlx_destroy_image(game->mlx_ptr, game->assets.wall_img);
+	mlx_destroy_image(game->mlx_ptr, game->assets.player_img);
+	mlx_destroy_image(game->mlx_ptr, game->assets.collectible_img);
+	mlx_destroy_image(game->mlx_ptr, game->assets.exit_img);
 }
 
 /* TODO Document this function */

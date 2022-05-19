@@ -6,11 +6,11 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 19:00:35 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/16 15:57:26 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/17 21:42:39 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "valid_map.h"
 
 static int	is_map_char_valid(char c);
 static int	get_char_count(char **map, char c, t_vector2d map_size);

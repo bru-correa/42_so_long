@@ -14,11 +14,11 @@ BIN_DIR				= ./bin
 LIB_DIR				= ./lib
 
 LIBFT_DIR			= $(LIB_DIR)/libft
-# LIBMLX_DIR			= $(LIB_DIR)/libmlx
 
 FILENAMES			= handle_input render update get_map validate_map
 FILENAMES			+= validate_map_walls validate_map_objs exit_game
 FILENAMES			+= load_assets get_map_size free_map render_map render_tile
+FILENAMES			+= render_img blend_imgs
 
 SRC_FILES			= $(patsubst %, $(SRC_DIR)/%.c, $(FILENAMES))
 OBJ_FILES			= $(patsubst %, $(OBJ_DIR)/%.o, $(FILENAMES))
@@ -41,7 +41,7 @@ debug:				required
 						-o $(BIN_DIR)/debug
 
 $(NAME):			required
-					$(CC) $(MAIN) $(OBJ_FILES) $(CFLAGS) $(CFLAGS_LIB) \
+					$(CC) -g $(MAIN) $(OBJ_FILES) $(CFLAGS) $(CFLAGS_LIB) \
 						-o $(PROGRAM)
 
 $(OBJ_DIR):
@@ -55,9 +55,6 @@ $(BIN_DIR):
 
 libft:
 					$(MAKE) -C $(LIBFT_DIR)
-
-# libmlx:
-# 					$(MAKE) -C $(LIBMLX_DIR)
 
 run:				all
 					$(PROGRAM)

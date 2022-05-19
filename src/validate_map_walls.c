@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_map_walled.c                                    :+:      :+:    :+:   */
+/*   validate_map_walls.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 15:20:11 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/11 18:49:51 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/17 21:43:08 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "valid_map.h"
 
 static int	check_horizontal_wall(char *map_row);
 static int	check_vertical_walls(char **map, t_vector2d map_size);

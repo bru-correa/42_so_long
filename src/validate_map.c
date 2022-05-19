@@ -6,11 +6,11 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 16:33:17 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/11 21:36:00 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/17 21:43:59 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "valid_map.h"
 
 static int	is_map_shape_valid(char **map, int map_width);
 

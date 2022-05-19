@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:35:56 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/11 21:14:52 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/19 00:23:06 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,22 @@
 
 static int			create_game_data(t_game *game, char *map_path);
 static int			get_map_data(t_game *game, char *map_path);
+static int			create_new_window(t_game *game);
+static void			free_game_data(t_game *game);
 static void			enter_game_loop(t_game *game);
 
 int	main(int argc, char *argv[])
 {
 	t_game	game;
-	int		status;
+	int		data_status;
 
 	if (argc != 2)
 	{
 		ft_printf("Error\nYou must pass the map path as argument");
 		return (ERROR);
 	}
-	status = create_game_data(&game, argv[1]);
-	if (status == ERROR)
+	data_status = create_game_data(&game, argv[1]);
+	if (data_status == ERROR)
 		return (ERROR);
 	enter_game_loop(&game);
 	return (0);
@@ -35,21 +37,16 @@ int	main(int argc, char *argv[])
 
 static int	create_game_data(t_game *game, char *map_path)
 {
-	int	status;
+	int			data_status;
 
-	status = get_map_data(game, map_path);
-	if (status == ERROR)
+	data_status = get_map_data(game, map_path);
+	if (data_status == ERROR)
 		return (ERROR);
 	game->mlx_ptr = mlx_init();
 	if (game->mlx_ptr == NULL)
 		return (ERROR);
-	game->win_ptr = mlx_new_window(game->mlx_ptr, game->map_size.x * TILE_SIZE,
-			game->map_size.y * TILE_SIZE, "so_long");
-	if (game->win_ptr == NULL)
-	{
-		free(game->win_ptr);
-		return (ERROR);
-	}
+	load_assets(game);
+	data_status = create_new_window(game);
 	game->steps_counter = 0;
 	game->input = init_input();
 	return (0);
@@ -64,6 +61,31 @@ static int	get_map_data(t_game *game, char *map_path)
 	if (game->map == NULL)
 		return (ERROR);
 	return (0);
+}
+
+static int	create_new_window(t_game *game)
+{
+	t_vector2d	window_size;
+
+	window_size.x = game->map_size.x * TILE_SIZE;
+	window_size.y = game->map_size.y * TILE_SIZE;
+	ft_printf("Window size: (%d x %d)\n", window_size.x, window_size.y);
+	game->win_ptr = mlx_new_window(game->mlx_ptr, window_size.x, window_size.y,
+			"so_long");
+	if (game->win_ptr == NULL)
+	{
+		free_game_data(game);
+		return (ERROR);
+	}
+	return (0);
+}
+
+static void	free_game_data(t_game *game)
+{
+	free_assets(game);
+	free(game->win_ptr);
+	free(game->mlx_ptr);
+	free_map(game->map);
 }
 
 static void	enter_game_loop(t_game *game)
