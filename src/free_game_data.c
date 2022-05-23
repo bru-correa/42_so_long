@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests.c                                            :+:      :+:    :+:   */
+/*   free_game_data.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/25 15:07:50 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/19 22:28:26 by bcorrea-         ###   ########.fr       */
+/*   Created: 2022/05/19 21:45:48 by bcorrea-          #+#    #+#             */
+/*   Updated: 2022/05/19 21:46:13 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tests.h"
+#include "so_long.h"
 
-int	main(void)
+void	free_game_data(t_game *game)
 {
-	// test_maps();
-	test_blend();
-	return (0);
+	free_assets(game);
+	free(game->win_ptr);
+	free(game->mlx_ptr);
+	free_map(game->map);
 }

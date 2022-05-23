@@ -18,16 +18,18 @@ LIBFT_DIR			= $(LIB_DIR)/libft
 FILENAMES			= handle_input render update get_map validate_map
 FILENAMES			+= validate_map_walls validate_map_objs exit_game
 FILENAMES			+= load_assets get_map_size free_map render_map render_tile
-FILENAMES			+= render_img blend_imgs
+FILENAMES			+= render_img blend_imgs create_game_data free_game_data
 
-SRC_FILES			= $(patsubst %, $(SRC_DIR)/%.c, $(FILENAMES))
 OBJ_FILES			= $(patsubst %, $(OBJ_DIR)/%.o, $(FILENAMES))
 MAIN				= $(APPS_DIR)/$(NAME).c
 PROGRAM				= $(BIN_DIR)/$(NAME)
 
 # TESTS
 TESTS_DIR			= ./tests
+TESTS_CFLAGS		= -I $(TESTS_DIR)
 TESTS_MAIN			= $(TESTS_DIR)/tests.c
+TESTS_FILENAMES		= test_blend test_maps
+TESTS_OBJ_FILES		= $(patsubst %, $(TESTS_DIR)/%.o, $(TESTS_FILENAMES))
 TESTS				= $(TESTS_DIR)/tests
 VALGRIND			= valgrind -q --leak-check=full --show-leak-kinds=all \
 						-s --track-origins=yes --verbose
@@ -69,9 +71,12 @@ fclean:				clean
 					rm -f $(PROGRAM)
 
 # TESTS [REMOVE LATER]
-tests:				required
-					$(CC) -g $(TESTS_MAIN) $(OBJ_FILES) $(CFLAGS) \
-					$(CFLAGS_LIB) -o $(TESTS)
+tests:				required $(TESTS_OBJ_FILES)
+					$(CC) -g $(TESTS_MAIN) $(OBJ_FILES) $(TESTS_OBJ_FILES) \
+						$(CFLAGS) $(TESTS_CFLAGS) $(CFLAGS_LIB) -o $(TESTS)
+
+$(TESTS_DIR)/%.o:	$(SRC_DIR)%.c
+					$(CC) -c -g $< $(CFLAGS) $(TESTS_CFLAGS) -o $@
 
 runt:				tests
 					$(VALGRIND) $(TESTS)

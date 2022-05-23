@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 01:50:05 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/19 04:31:27 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/19 21:40:11 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static t_img_data	merge_pixels(t_img_data img_front, t_img_data img_back);
 static void	put_pixel(t_img_data *img_front, t_img_data *img_back,
 		t_vector2d position);
 
-/* Remember, you navigate one byte at time, not one pixel */
 void	*blend_imgs(void *img_front_ptr, void *img_back_ptr)
 {
 	t_img_data	img_front;
@@ -40,6 +39,7 @@ static t_img_data	get_img_data(void *img_ptr)
 	return (img_data);
 }
 
+/* Remember, you navigate one byte at time, not one pixel */
 static t_img_data	merge_pixels(t_img_data img_front, t_img_data img_back)
 {
 	t_vector2d	position;

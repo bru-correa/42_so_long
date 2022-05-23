@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:44:02 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/19 04:27:59 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/19 21:46:27 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ typedef struct s_game
 	t_vector2d	map_size;
 }	t_game;
 
+int			create_game_data(t_game *game, char *map_path);
+void		free_game_data(t_game *game);
 int			update(t_game *game);
 int			render(t_game *game);
 int			handle_keypress(int keysym, t_game *game);

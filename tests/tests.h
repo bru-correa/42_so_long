@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests.c                                            :+:      :+:    :+:   */
+/*   tests.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/25 15:07:50 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/19 22:28:26 by bcorrea-         ###   ########.fr       */
+/*   Created: 2022/05/19 21:07:13 by bcorrea-          #+#    #+#             */
+/*   Updated: 2022/05/19 21:56:49 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tests.h"
+#ifndef TESTS_H
+# define TESTS_H
 
-int	main(void)
-{
-	// test_maps();
-	test_blend();
-	return (0);
-}
+# include "so_long.h"
+
+void	test_maps(void);
+int		test_blend(void);
+
+#endif
