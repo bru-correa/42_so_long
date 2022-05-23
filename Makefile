@@ -83,4 +83,4 @@ runt:				tests
 runv:				all
 					$(VALGRIND) $(PROGRAM) resources/maps/default.ber
 
-.PHONY:	all libft libmlx run clean fclean re debug test runt
+.PHONY:	all libft run clean fclean re debug test runt
