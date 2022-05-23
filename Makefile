@@ -63,7 +63,6 @@ run:				all
 
 clean:
 					$(MAKE) -C $(LIBFT_DIR) clean
-					$(MAKE) -C $(LIBMLX_DIR) clean
 					rm -rf $(OBJ_DIR)
 
 fclean:				clean

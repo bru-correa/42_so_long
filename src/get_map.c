@@ -6,11 +6,11 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:05:48 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/11 20:43:12 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/23 22:55:10 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "valid_map.h"
 #include <fcntl.h>
 
 static char	**get_map_from_file(char *map_path, int map_height);
