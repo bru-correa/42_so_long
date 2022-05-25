@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:44:02 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/25 20:45:12 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/25 22:19:19 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_game
 	char		**map;
 	t_vector2d	map_size;
 	t_vector2d	player_position;
+	int			wait_for_render;
 }	t_game;
 
 int			create_game_data(t_game *game, char *map_path);
@@ -90,6 +91,7 @@ t_vector2d	get_map_size(char *map_path);
 char		**get_map(char *map_path, t_vector2d map_size);
 void		free_map(char **map);
 void		render_map(t_game *game);
+void		update_map(t_game *game);
 void		exit_game(t_game *game);
 
 #endif

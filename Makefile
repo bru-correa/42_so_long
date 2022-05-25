@@ -19,7 +19,7 @@ FILENAMES			= handle_input render update get_map validate_map
 FILENAMES			+= validate_map_walls validate_map_objs exit_game
 FILENAMES			+= load_assets get_map_size free_map render_map render_tile
 FILENAMES			+= render_img create_game_data free_game_data
-FILENAMES			+= get_char_count
+FILENAMES			+= get_char_count update_map
 
 OBJ_FILES			= $(patsubst %, $(OBJ_DIR)/%.o, $(FILENAMES))
 MAIN				= $(APPS_DIR)/$(NAME).c
