@@ -40,13 +40,13 @@ int	handle_keypress(int keysym, t_game *game)
 		game->input.direction.y = 1;
 	if (keysym == XK_w)
 		game->input.direction.y = -1;
+	if (game->wait_for_render == FALSE)
+		update_map(game);
 	if (keysym == XK_Escape)
 	{
 		exit_game(game);
 		return (0);
 	}
-	if (game->wait_for_render == FALSE)
-		update_map(game);
 	return (0);
 }
 
