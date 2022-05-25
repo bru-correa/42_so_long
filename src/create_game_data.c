@@ -6,14 +6,15 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 21:35:06 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/19 22:29:08 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/25 02:13:21 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	get_map_data(t_game *game, char *map_path);
-static int	create_new_window(t_game *game);
+static int			get_map_data(t_game *game, char *map_path);
+static int			create_new_window(t_game *game);
+static t_vector2d	get_player_position(char **map, t_vector2d map_size);
 
 int	create_game_data(t_game *game, char *map_path)
 {
@@ -40,7 +41,28 @@ static int	get_map_data(t_game *game, char *map_path)
 	game->map = get_map(map_path, game->map_size);
 	if (game->map == NULL)
 		return (ERROR);
+	game->collectible_left = get_char_count(game->map, 'C', game->map_size);
+	game->player_position = get_player_position(game->map, game->map_size);
 	return (0);
+}
+
+static t_vector2d	get_player_position(char **map, t_vector2d map_size)
+{
+	t_vector2d	position;
+
+	position.y = 0;
+	while (position.y < map_size.y)
+	{
+		position.x = 0;
+		while (position.x < map_size.x)
+		{
+			if (map[position.y][position.x] == 'P')
+				return (position);
+			position.x++;
+		}
+		position.y++;
+	}
+	return (position);
 }
 
 static int	create_new_window(t_game *game)

@@ -18,7 +18,8 @@ LIBFT_DIR			= $(LIB_DIR)/libft
 FILENAMES			= handle_input render update get_map validate_map
 FILENAMES			+= validate_map_walls validate_map_objs exit_game
 FILENAMES			+= load_assets get_map_size free_map render_map render_tile
-FILENAMES			+= render_img blend_imgs create_game_data free_game_data
+FILENAMES			+= render_img create_game_data free_game_data
+FILENAMES			+= get_char_count
 
 OBJ_FILES			= $(patsubst %, $(OBJ_DIR)/%.o, $(FILENAMES))
 MAIN				= $(APPS_DIR)/$(NAME).c
@@ -59,7 +60,7 @@ libft:
 					$(MAKE) -C $(LIBFT_DIR)
 
 run:				all
-					$(PROGRAM)
+					$(PROGRAM) resources/maps/default.ber
 
 clean:
 					$(MAKE) -C $(LIBFT_DIR) clean

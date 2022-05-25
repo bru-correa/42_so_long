@@ -6,14 +6,14 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 19:00:35 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/17 21:42:39 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/24 01:38:36 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "valid_map.h"
 
 static int	is_map_char_valid(char c);
-static int	get_char_count(char **map, char c, t_vector2d map_size);
+int	get_char_count(char **map, char c, t_vector2d map_size);
 
 int	is_map_chars_valid(char **map, t_vector2d map_size)
 {
@@ -64,27 +64,4 @@ static int	is_map_char_valid(char c)
 		return (FALSE);
 	}
 	return (TRUE);
-}
-
-static int	get_char_count(char **map, char c, t_vector2d map_size)
-{
-	t_vector2d	position;
-	char		current_char;
-	int			counter;
-
-	position.y = 0;
-	counter = 0;
-	while (position.y < map_size.y)
-	{
-		position.x = 0;
-		while (position.x < map_size.x)
-		{
-			current_char = map[position.y][position.x];
-			if (current_char == c)
-				counter++;
-			position.x++;
-		}
-		position.y++;
-	}
-	return (counter);
 }

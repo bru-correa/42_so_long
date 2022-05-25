@@ -30,6 +30,24 @@ int	handle_keypress(int keysym, t_game *game)
 	return (0);
 }
 
+// int	handle_keypress(int keysym, t_game *game)
+// {
+// 	if (keysym == XK_d)
+// 		game->input.direction.x = 1;
+// 	if (keysym == XK_a)
+// 		game->input.direction.x = -1;
+// 	if (keysym == XK_s)
+// 		game->input.direction.y = 1;
+// 	if (keysym == XK_w)
+// 		game->input.direction.y = -1;
+// 	if (keysym == XK_Escape)
+// 	{
+// 		exit_game(game);
+// 		return (0);
+// 	}
+// 	return (0);
+// }
+
 int	handle_keyrelease(int keysym, t_game *game)
 {
 	if (keysym == XK_d)

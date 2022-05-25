@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:05:48 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/23 22:55:10 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/23 23:37:42 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 static char	**get_map_from_file(char *map_path, int map_height);
 
+/* TODO Maybe add exit function here */
 char	**get_map(char *map_path, t_vector2d map_size)
 {
 	char	**map;

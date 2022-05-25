@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:44:02 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/23 22:57:07 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/25 20:45:12 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define WINDOW_HEIGHT 896
 # define TILE_SIZE 64
 # define ERROR 1
-# define FRAME_DELAY 10
+# define FRAME_DELAY 4000
 
 /* Structs */
 
@@ -37,12 +37,12 @@ typedef struct s_vector2d
 
 typedef struct s_input
 {
-	t_vector2d	direction;
 	int			up;
 	int			down;
 	int			left;
 	int			right;
 	int			attack;
+	t_vector2d	direction;
 }	t_input;
 
 typedef struct s_assets
@@ -73,9 +73,11 @@ typedef struct s_game
 	t_input		input;
 	char		**map;
 	t_vector2d	map_size;
+	t_vector2d	player_position;
 }	t_game;
 
 int			create_game_data(t_game *game, char *map_path);
+int			get_char_count(char **map, char c, t_vector2d map_size);
 void		free_game_data(t_game *game);
 int			update(t_game *game);
 int			render(t_game *game);
@@ -83,7 +85,6 @@ int			handle_keypress(int keysym, t_game *game);
 int			handle_keyrelease(int keysym, t_game *game);
 t_input		init_input(void);
 int			load_assets(t_game *game);
-void		*blend_imgs(void *img_front_ptr, void *img_back_ptr);
 void		free_assets(t_game *game);
 t_vector2d	get_map_size(char *map_path);
 char		**get_map(char *map_path, t_vector2d map_size);
