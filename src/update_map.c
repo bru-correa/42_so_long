@@ -6,13 +6,14 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 21:22:45 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/25 22:23:04 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/26 21:40:10 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 static void	update_player(t_game *game);
+static void	update_player_dir(t_game *game);
 static void	move_player(t_game *game, t_vector2d next_pos);
 
 void	update_map(t_game *game)
@@ -26,6 +27,7 @@ static void	update_player(t_game *game)
 	t_vector2d	next_pos;
 	char		next_tile;
 
+	update_player_dir(game);
 	next_pos.x = game->player_position.x + game->input.direction.x;
 	next_pos.y = game->player_position.y + game->input.direction.y;
 	next_tile = game->map[next_pos.y][next_pos.x];
@@ -41,6 +43,18 @@ static void	update_player(t_game *game)
 		ft_printf("Level Complete!\n");
 		exit_game(game);
 	}
+}
+
+static void	update_player_dir(t_game *game)
+{
+	if (game->input.right)
+		game->input.direction.x = 1;
+	else if (game->input.left)
+		game->input.direction.x = -1;
+	else if (game->input.up)
+		game->input.direction.y = -1;
+	else if (game->input.down)
+		game->input.direction.y = 1;
 }
 
 static void	move_player(t_game *game, t_vector2d next_pos)

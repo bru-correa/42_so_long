@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:44:02 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/25 22:30:24 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/25 23:09:05 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ typedef struct s_assets
 {
 	void	*floor_img;
 	void	*wall_img;
-	void	*player_img;
+	void	*player_front_img;
+	void	*player_back_img;
+	void	*player_right_img;
+	void	*player_left_img;
 	void	*collectible_img;
 	void	*exit_img;
 }	t_assets;

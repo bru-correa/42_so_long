@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 15:08:14 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/19 01:49:46 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/25 23:19:42 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ int	load_assets(t_game *game)
 {
 	game->assets.floor_img = create_img_ptr(game, FLOOR_PATH);
 	game->assets.wall_img = create_img_ptr(game, WALL_PATH);
-	game->assets.player_img = create_img_ptr(game, PLAYER_PATH);
+	game->assets.player_front_img = create_img_ptr(game, PLAYER_FRONT_PATH);
+	game->assets.player_back_img = create_img_ptr(game, PLAYER_BACK_PATH);
+	game->assets.player_right_img = create_img_ptr(game, PLAYER_RIGHT_PATH);
+	game->assets.player_left_img = create_img_ptr(game, PLAYER_LEFT_PATH);
 	game->assets.collectible_img = create_img_ptr(game, COLLECTIBLE_PATH);
 	game->assets.exit_img = create_img_ptr(game, EXIT_PATH);
 	return (check_assets(game->assets));
@@ -31,7 +34,10 @@ void	free_assets(t_game *game)
 {
 	mlx_destroy_image(game->mlx_ptr, game->assets.floor_img);
 	mlx_destroy_image(game->mlx_ptr, game->assets.wall_img);
-	mlx_destroy_image(game->mlx_ptr, game->assets.player_img);
+	mlx_destroy_image(game->mlx_ptr, game->assets.player_front_img);
+	mlx_destroy_image(game->mlx_ptr, game->assets.player_back_img);
+	mlx_destroy_image(game->mlx_ptr, game->assets.player_right_img);
+	mlx_destroy_image(game->mlx_ptr, game->assets.player_left_img);
 	mlx_destroy_image(game->mlx_ptr, game->assets.collectible_img);
 	mlx_destroy_image(game->mlx_ptr, game->assets.exit_img);
 }
@@ -57,7 +63,8 @@ static int	check_assets(t_assets assets)
 		return (ERROR);
 	if (assets.wall_img == NULL)
 		return (ERROR);
-	if (assets.player_img == NULL)
+	if (assets.player_front_img == NULL && assets.player_back_img == NULL &&
+		assets.player_left_img == NULL && assets.player_right_img == NULL)
 		return (ERROR);
 	if (assets.collectible_img == NULL)
 		return (ERROR);

@@ -12,16 +12,38 @@
 
 #include "so_long.h"
 
+int	handle_keypress(int keysym, t_game *game)
+{
+	if (keysym == XK_d)
+		game->input.right = 1;
+	if (keysym == XK_a)
+		game->input.left = 1;
+	if (keysym == XK_s)
+		game->input.down = 1;
+	if (keysym == XK_w)
+		game->input.up = 1;
+	if (keysym == XK_Escape)
+	{
+		exit_game(game);
+		return (0);
+	}
+	if (game->wait_for_render == FALSE)
+		update_map(game);
+	return (0);
+}
+
 // int	handle_keypress(int keysym, t_game *game)
 // {
 // 	if (keysym == XK_d)
-// 		game->input.right = 1;
+// 		game->input.direction.x = 1;
 // 	if (keysym == XK_a)
-// 		game->input.left = 1;
+// 		game->input.direction.x = -1;
 // 	if (keysym == XK_s)
-// 		game->input.down = 1;
+// 		game->input.direction.y = 1;
 // 	if (keysym == XK_w)
-// 		game->input.up = 1;
+// 		game->input.direction.y = -1;
+// 	if (game->wait_for_render == FALSE)
+// 		update_map(game);
 // 	if (keysym == XK_Escape)
 // 	{
 // 		exit_game(game);
@@ -30,47 +52,27 @@
 // 	return (0);
 // }
 
-int	handle_keypress(int keysym, t_game *game)
-{
-	if (keysym == XK_d)
-		game->input.direction.x = 1;
-	if (keysym == XK_a)
-		game->input.direction.x = -1;
-	if (keysym == XK_s)
-		game->input.direction.y = 1;
-	if (keysym == XK_w)
-		game->input.direction.y = -1;
-	if (game->wait_for_render == FALSE)
-		update_map(game);
-	if (keysym == XK_Escape)
-	{
-		exit_game(game);
-		return (0);
-	}
-	return (0);
-}
+// int	handle_keyrelease(int keysym, t_game *game)
+// {
+// 	if (keysym == XK_d || keysym == XK_a)
+// 		game->input.direction.x = 0;
+// 	if (keysym == XK_w || keysym == XK_s)
+// 		game->input.direction.y = 0;
+// 	return (0);
+// }
 
 int	handle_keyrelease(int keysym, t_game *game)
 {
-	if (keysym == XK_d || keysym == XK_a)
-		game->input.direction.x = 0;
-	if (keysym == XK_w || keysym == XK_s)
-		game->input.direction.y = 0;
+	if (keysym == XK_d)
+		game->input.right = 0;
+	if (keysym == XK_a)
+		game->input.left = 0;
+	if (keysym == XK_s)
+		game->input.down = 0;
+	if (keysym == XK_w)
+		game->input.up = 0;
 	return (0);
 }
-
-// int	handle_keyrelease(int keysym, t_game *game)
-// {
-// 	if (keysym == XK_d)
-// 		game->input.right = 0;
-// 	if (keysym == XK_a)
-// 		game->input.left = 0;
-// 	if (keysym == XK_s)
-// 		game->input.down = 0;
-// 	if (keysym == XK_w)
-// 		game->input.up = 0;
-// 	return (0);
-// }
 
 t_input	init_input(void)
 {
