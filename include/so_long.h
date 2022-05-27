@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:44:02 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/25 23:09:05 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/27 22:37:06 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,6 @@ typedef struct s_vector2d
 
 typedef struct s_input
 {
-	int			up;
-	int			down;
-	int			left;
-	int			right;
-	int			attack;
 	t_vector2d	direction;
 }	t_input;
 
@@ -86,7 +81,6 @@ void		free_game_data(t_game *game);
 int			update(t_game *game);
 int			render(t_game *game);
 int			handle_keypress(int keysym, t_game *game);
-int			handle_keyrelease(int keysym, t_game *game);
 t_input		init_input(void);
 int			load_assets(t_game *game);
 void		free_assets(t_game *game);
@@ -94,7 +88,8 @@ t_vector2d	get_map_size(char *map_path);
 char		**get_map(char *map_path, t_vector2d map_size);
 void		free_map(char **map);
 void		render_map(t_game *game);
-void		update_map(t_game *game);
+// void		update_map(t_game *game);
+void		update_player(t_game *game, int x, int y);
 int			exit_game(t_game *game);
 
 #endif

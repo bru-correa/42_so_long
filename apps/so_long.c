@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:35:56 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/25 22:33:08 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/27 22:37:37 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ static void	enter_game_loop(t_game *game)
 {
 	mlx_loop_hook(game->mlx_ptr, &update, game);
 	mlx_hook(game->win_ptr, KeyPress, KeyPressMask, &handle_keypress, game);
-	mlx_hook(game->win_ptr, KeyRelease, KeyReleaseMask, &handle_keyrelease,
-		game);
 	mlx_hook(game->win_ptr, DestroyNotify, NoEventMask, &exit_game, game);
 	mlx_loop(game->mlx_ptr);
 }
