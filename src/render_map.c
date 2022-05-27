@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 18:56:53 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/28 00:40:48 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/28 00:58:18 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	render_current_tile(t_game *game, char tile, t_vector2d position)
 	else if (tile == 'P')
 		render_player(game, position);
 	else if (tile == 'C')
-		render_img(game, game->assets.collectible_img, position);
+		render_img(game, game->assets.coin_img, position);
 	else if (tile == 'E')
 		render_img(game, game->assets.exit_img, position);
 }
