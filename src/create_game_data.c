@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 21:35:06 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/28 00:05:24 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/28 00:35:00 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static int			get_map_data(t_game *game, char *map_path);
 static int			create_new_window(t_game *game);
 static t_vector2d	get_player_position(char **map, t_vector2d map_size);
+static void			init_player(t_game *game);
 
 int	create_game_data(t_game *game, char *map_path)
 {
@@ -26,8 +27,10 @@ int	create_game_data(t_game *game, char *map_path)
 	game->mlx_ptr = mlx_init();
 	if (game->mlx_ptr == NULL)
 		return (ERROR);
-	load_assets(game);
+	data_status = load_assets(game);
 	data_status = create_new_window(game);
+	if (data_status == ERROR)
+		return (ERROR);
 	init_player(game);
 	return (0);
 }
@@ -78,4 +81,11 @@ static int	create_new_window(t_game *game)
 		return (ERROR);
 	}
 	return (0);
+}
+
+static void	init_player(t_game *game)
+{
+	game->player.direction.x = 0;
+	game->player.direction.y = 1;
+	game->player.steps = 0;
 }

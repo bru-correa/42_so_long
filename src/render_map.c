@@ -6,13 +6,15 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 18:56:53 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/19 01:05:31 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/28 00:40:48 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "render_tile.h"
+#include "so_long.h"
 
 static void	render_current_tile(t_game *game, char tile, t_vector2d position);
+static void	render_img(t_game *game, void *img_ptr, t_vector2d position);
+static void	render_player(t_game *game, t_vector2d position);
 
 void	render_map(t_game *game)
 {
@@ -36,13 +38,33 @@ void	render_map(t_game *game)
 static void	render_current_tile(t_game *game, char tile, t_vector2d position)
 {
 	if (tile == '0')
-		render_floor(game, position);
+		render_img(game, game->assets.floor_img, position);
 	else if (tile == '1')
-		render_wall(game, position);
+		render_img(game, game->assets.wall_img, position);
 	else if (tile == 'P')
 		render_player(game, position);
 	else if (tile == 'C')
-		render_collectible(game, position);
+		render_img(game, game->assets.collectible_img, position);
 	else if (tile == 'E')
-		render_exit(game, position);
+		render_img(game, game->assets.exit_img, position);
+}
+
+static void	render_img(t_game *game, void *img_ptr, t_vector2d position)
+{
+	position.x = position.x * TILE_SIZE;
+	position.y = position.y * TILE_SIZE;
+	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, img_ptr,
+		position.x, position.y);
+}
+
+static void	render_player(t_game *game, t_vector2d position)
+{
+	if (game->player.direction.x == 1)
+		render_img(game, game->assets.player_right_img, position);
+	else if (game->player.direction.x == -1)
+		render_img(game, game->assets.player_left_img, position);
+	else if (game->player.direction.y == 1)
+		render_img(game, game->assets.player_front_img, position);
+	else if (game->player.direction.y == -1)
+		render_img(game, game->assets.player_back_img, position);
 }

@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 15:08:14 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/25 23:19:42 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/28 00:38:45 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	load_assets(t_game *game)
 	return (check_assets(game->assets));
 }
 
-/* TODO Try to free all the elements in assets in a loop */
 void	free_assets(t_game *game)
 {
 	mlx_destroy_image(game->mlx_ptr, game->assets.floor_img);
@@ -42,7 +41,6 @@ void	free_assets(t_game *game)
 	mlx_destroy_image(game->mlx_ptr, game->assets.exit_img);
 }
 
-/* TODO Document this function */
 static void	*create_img_ptr(t_game *game, char *relative_path)
 {
 	void	*img;
@@ -63,8 +61,8 @@ static int	check_assets(t_assets assets)
 		return (ERROR);
 	if (assets.wall_img == NULL)
 		return (ERROR);
-	if (assets.player_front_img == NULL && assets.player_back_img == NULL &&
-		assets.player_left_img == NULL && assets.player_right_img == NULL)
+	if (assets.player_front_img == NULL && assets.player_back_img == NULL
+		&& assets.player_left_img == NULL && assets.player_right_img == NULL)
 		return (ERROR);
 	if (assets.collectible_img == NULL)
 		return (ERROR);

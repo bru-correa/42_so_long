@@ -6,13 +6,13 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:35:56 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/27 22:37:37 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/28 00:36:09 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void			enter_game_loop(t_game *game);
+static void	enter_game_loop(t_game *game);
 
 int	main(int argc, char *argv[])
 {

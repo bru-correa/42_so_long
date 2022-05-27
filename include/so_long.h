@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:44:02 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/27 22:57:41 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/28 00:42:25 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,6 @@ typedef struct s_assets
 	void	*exit_img;
 }	t_assets;
 
-typedef struct s_img_data
-{
-	void	*ptr;
-	char	*pixels;
-	int		bits_per_pixel;
-	int		line_size;
-	int		endian;
-}	t_img_data;
-
 typedef struct s_game
 {
 	void		*mlx_ptr;
@@ -79,16 +70,13 @@ int			create_game_data(t_game *game, char *map_path);
 int			get_char_count(char **map, char c, t_vector2d map_size);
 void		free_game_data(t_game *game);
 int			update(t_game *game);
-int			render(t_game *game);
 int			handle_keypress(int keysym, t_game *game);
-void		init_player(t_game *game);
 int			load_assets(t_game *game);
 void		free_assets(t_game *game);
 t_vector2d	get_map_size(char *map_path);
 char		**get_map(char *map_path, t_vector2d map_size);
 void		free_map(char **map);
 void		render_map(t_game *game);
-// void		update_map(t_game *game);
 void		update_player(t_game *game, int x, int y);
 int			exit_game(t_game *game);
 

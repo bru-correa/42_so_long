@@ -15,10 +15,10 @@ LIB_DIR				= ./lib
 
 LIBFT_DIR			= $(LIB_DIR)/libft
 
-FILENAMES			= handle_input render update get_map validate_map
+FILENAMES			= hooks get_map validate_map
 FILENAMES			+= validate_map_walls validate_map_objs exit_game
-FILENAMES			+= load_assets get_map_size free_map render_map render_tile
-FILENAMES			+= render_img create_game_data free_game_data
+FILENAMES			+= load_assets get_map_size render_map
+FILENAMES			+= create_game_data
 FILENAMES			+= get_char_count update_player
 
 OBJ_FILES			= $(patsubst %, $(OBJ_DIR)/%.o, $(FILENAMES))
@@ -29,7 +29,7 @@ PROGRAM				= $(BIN_DIR)/$(NAME)
 TESTS_DIR			= ./tests
 TESTS_CFLAGS		= -I $(TESTS_DIR)
 TESTS_MAIN			= $(TESTS_DIR)/tests.c
-TESTS_FILENAMES		= test_blend test_maps
+TESTS_FILENAMES		= test_maps
 TESTS_OBJ_FILES		= $(patsubst %, $(TESTS_DIR)/%.o, $(TESTS_FILENAMES))
 TESTS				= $(TESTS_DIR)/tests
 VALGRIND			= valgrind -q --leak-check=full --show-leak-kinds=all \

@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 15:07:50 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/19 22:28:26 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/28 00:44:35 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	main(void)
 {
-	// test_maps();
-	test_blend();
+	test_maps();
 	return (0);
 }
