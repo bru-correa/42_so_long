@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 15:44:55 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/27 22:33:54 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/27 22:44:10 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	render_wall(t_game *game, t_vector2d position)
 
 void	render_player(t_game *game, t_vector2d position)
 {
-	if (game->input.direction.x == 1)
+	if (game->player.direction.x == 1)
 		render_img(game, game->assets.player_right_img, position);
-	else if (game->input.direction.x == -1)
+	else if (game->player.direction.x == -1)
 		render_img(game, game->assets.player_left_img, position);
-	else if (game->input.direction.y == 1)
+	else if (game->player.direction.y == 1)
 		render_img(game, game->assets.player_front_img, position);
-	else if (game->input.direction.y == -1)
+	else if (game->player.direction.y == -1)
 		render_img(game, game->assets.player_back_img, position);
 }
 

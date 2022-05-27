@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:44:02 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/27 22:37:06 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/27 22:57:41 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,12 @@ typedef struct s_vector2d
 	int	y;
 }	t_vector2d;
 
-typedef struct s_input
+typedef struct player
 {
+	t_vector2d	position;
 	t_vector2d	direction;
-}	t_input;
+	int			steps;
+}	t_player;
 
 typedef struct s_assets
 {
@@ -66,12 +68,10 @@ typedef struct s_game
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_assets	assets;
-	int			steps_counter;
 	int			collectible_left;
-	t_input		input;
+	t_player	player;
 	char		**map;
 	t_vector2d	map_size;
-	t_vector2d	player_position;
 	int			wait_for_render;
 }	t_game;
 
@@ -81,7 +81,7 @@ void		free_game_data(t_game *game);
 int			update(t_game *game);
 int			render(t_game *game);
 int			handle_keypress(int keysym, t_game *game);
-t_input		init_input(void);
+void		init_player(t_game *game);
 int			load_assets(t_game *game);
 void		free_assets(t_game *game);
 t_vector2d	get_map_size(char *map_path);

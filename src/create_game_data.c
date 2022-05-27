@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 21:35:06 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/25 02:13:21 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/27 23:24:09 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ int	create_game_data(t_game *game, char *map_path)
 		return (ERROR);
 	load_assets(game);
 	data_status = create_new_window(game);
-	game->steps_counter = 0;
-	game->input = init_input();
+	init_player(game);
 	return (0);
 }
 
@@ -42,8 +41,7 @@ static int	get_map_data(t_game *game, char *map_path)
 	if (game->map == NULL)
 		return (ERROR);
 	game->collectible_left = get_char_count(game->map, 'C', game->map_size);
-	game->player_position = get_player_position(game->map, game->map_size);
-	return (0);
+	game->player.position = get_player_position(game->map, game->map_size); return (0);
 }
 
 static t_vector2d	get_player_position(char **map, t_vector2d map_size)

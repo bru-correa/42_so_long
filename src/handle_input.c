@@ -22,16 +22,17 @@ int	handle_keypress(int keysym, t_game *game)
 		update_player(game, 0, -1);
 	else if (keysym == XK_s && game->wait_for_render == FALSE)
 		update_player(game, 0, 1);
+	if (keysym == XK_Escape)
+		exit_game(game);
 	return (0);
 }
 
-t_input	init_input(void)
+/* TODO Move this to data init function */
+void	init_player(t_game *game)
 {
-	t_input	input;
-
-	input.direction.x = 0;
-	input.direction.y = 1;
-	return (input);
+	game->player.direction.x = 0;
+	game->player.direction.y = 1;
+	game->player.steps = 0;
 }
 
 // int	handle_keypress(int keysym, t_game *game)

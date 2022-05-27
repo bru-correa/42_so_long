@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 21:22:45 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/27 22:22:21 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/27 22:46:52 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	update_player(t_game *game, int x, int y)
 	t_vector2d	new_pos;
 
 	game->wait_for_render = TRUE;
-	new_pos.x = game->player_position.x + x;
-	new_pos.y = game->player_position.y + y;
-	game->input.direction.x = x;
-	game->input.direction.y = y;
+	new_pos.x = game->player.position.x + x;
+	new_pos.y = game->player.position.y + y;
+	game->player.direction.x = x;
+	game->player.direction.y = y;
 	check_new_position(game, new_pos);
 }
 
@@ -48,11 +48,11 @@ static void	check_new_position(t_game *game, t_vector2d new_pos)
 
 static void	move_player(t_game *game, t_vector2d new_pos)
 {
-	game->map[game->player_position.y][game->player_position.x] = '0';
+	game->map[game->player.position.y][game->player.position.x] = '0';
 	game->map[new_pos.y][new_pos.x] = 'P';
-	game->player_position = new_pos;
-	game->steps_counter++;
-	ft_printf("Steps: %d\n", game->steps_counter);
+	game->player.position = new_pos;
+	game->player.steps++;
+	ft_printf("Steps: %d\n", game->player.steps);
 }
 
 // static void	update_player(t_game *game);
