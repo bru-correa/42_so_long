@@ -9,3 +9,4 @@ debug
 *.o
 *.a
 vgcore*
+tests/tests
