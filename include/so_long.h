@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:44:02 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/28 00:42:25 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/28 00:56:34 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct s_game
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_assets	assets;
-	int			collectible_left;
+	int			coins;
 	t_player	player;
 	char		**map;
 	t_vector2d	map_size;

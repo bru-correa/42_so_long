@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 21:35:06 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/28 00:35:00 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/28 00:56:34 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	get_map_data(t_game *game, char *map_path)
 	game->map = get_map(map_path, game->map_size);
 	if (game->map == NULL)
 		return (ERROR);
-	game->collectible_left = get_char_count(game->map, 'C', game->map_size);
+	game->coins = get_char_count(game->map, 'C', game->map_size);
 	game->player.position = get_player_position(game->map, game->map_size);
 	return (0);
 }
