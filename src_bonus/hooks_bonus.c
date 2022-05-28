@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 19:21:21 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/28 02:30:29 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/28 22:53:16 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static int	render(t_game *game)
 		return (ERROR);
 	mlx_clear_window(game->mlx_ptr, game->win_ptr);
 	render_map(game);
+	render_hud(game);
 	game->wait_for_render = FALSE;
 	return (0);
 }

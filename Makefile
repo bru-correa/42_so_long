@@ -22,6 +22,7 @@ FILENAMES			+= create_game_data
 FILENAMES			+= get_char_count update_player
 
 FILENAMES_BONUS		= $(addsuffix _bonus, $(FILENAMES))
+FILENAMES_BONUS		+= render_hud_bonus
 
 OBJ_FILES			= $(patsubst %, $(OBJ_DIR)/%.o, $(FILENAMES))
 MAIN				= $(APPS_DIR)/$(NAME).c
@@ -85,7 +86,7 @@ runv:				all
 					$(VALGRIND) $(PROGRAM) resources/maps/default.ber
 
 runbv:				bonus
-					$(VALGRIND) $(PROGRAM) resources/maps/bonus.ber
+					$(VALGRIND) $(PROGRAM)_bonus resources/maps/bonus.ber
 
 clean:
 					$(MAKE) -C $(LIBFT_DIR) clean

@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:44:02 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/28 03:45:33 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/28 22:53:01 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ void		free_map(char **map);
 void		render_map(t_game *game);
 void		update_player(t_game *game, int x, int y);
 int			exit_game(t_game *game);
+void		render_hud(t_game *game);
 
 #endif
