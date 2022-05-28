@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_map.c                                          :+:      :+:    :+:   */
+/*   get_map_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 15:05:48 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/28 00:40:29 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/28 02:30:03 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "valid_map.h"
+#include "valid_map_bonus.h"
 #include <fcntl.h>
 
 static char	**get_map_from_file(char *map_path, int map_height);

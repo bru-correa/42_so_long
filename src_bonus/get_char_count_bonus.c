@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_char_count.c                                   :+:      :+:    :+:   */
+/*   get_char_count_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 01:37:30 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/24 01:39:39 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/28 02:29:44 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	get_char_count(char **map, char c, t_vector2d map_size)
 {

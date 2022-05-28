@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_map_objs.c                                :+:      :+:    :+:   */
+/*   validate_map_objs_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 19:00:35 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/28 00:41:15 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/28 02:31:28 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "valid_map.h"
+#include "valid_map_bonus.h"
 
 static int	is_map_char_valid(char c);
 int			get_char_count(char **map, char c, t_vector2d map_size);
