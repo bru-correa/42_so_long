@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 18:56:53 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/28 03:19:10 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/28 04:13:06 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ void	render_map(t_game *game)
 		}
 		position.y++;
 	}
-	mlx_string_put(game->mlx_ptr, game->win_ptr, 32, 32, 0xf8c820, "50");
+	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
+		game->assets.score_img, 16, 8);
+	mlx_string_put(game->mlx_ptr, game->win_ptr, 128, 32, 0xf8c820, "50");
 }
 
 static void	render_current_tile(t_game *game, char tile, t_vector2d position)
