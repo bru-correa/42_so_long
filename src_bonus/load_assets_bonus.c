@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 15:08:14 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/28 04:12:10 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/28 04:21:11 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 static void	*create_img_ptr(t_game *game, char *relative_path);
 static int	check_assets(t_assets assets);
+static void	*create_score_img(t_game *game, char *relative_path);
 
 int	load_assets(t_game *game)
 {
