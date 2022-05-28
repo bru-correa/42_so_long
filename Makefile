@@ -24,6 +24,9 @@ FILENAMES			+= get_char_count update_player
 OBJ_FILES			= $(patsubst %, $(OBJ_DIR)/%.o, $(FILENAMES))
 MAIN				= $(APPS_DIR)/$(NAME).c
 PROGRAM				= $(BIN_DIR)/$(NAME)
+# BONUS
+OBJ_BONUS_FILES		= $(patsubst %, $(OBJ_DIR)/%.o, $(FILENAMES))
+MAIN_BONUS			= $(APPS_DIR)/$(NAME)_bonus.c
 
 # TESTS
 TESTS_DIR			= ./tests
@@ -37,7 +40,13 @@ VALGRIND			= valgrind -q --leak-check=full --show-leak-kinds=all \
 
 all:				$(NAME)
 
+bonus:				required_bonus
+					$(CC) -g $(MAIN) $(OBJ_FILES) $(CFLAGS) $(CFLAGS_LIB) \
+						-o $(PROGRAM)_bonus
+
 required:			$(OBJ_DIR) $(BIN_DIR) $(OBJ_FILES) libft
+
+required_bonus:		$(OBJ_DIR) $(BIN_DIR) $(OBJ_BONUS_FILES) libft
 
 debug:				required
 					$(CC) -g $(MAIN) $(OBJ_FILES) $(CFLAGS) $(CFLAGS_LIB) \
@@ -53,6 +62,9 @@ $(OBJ_DIR):
 $(OBJ_DIR)/%.o:		$(SRC_DIR)/%.c
 					$(CC) -c -g $< $(CFLAGS) -o $@
 
+$(OBJ_DIR)%.o:		$(BONUS_DIR)/%.c
+					$(CC) -c -g $< $(CFLAGS) -o $@
+
 $(BIN_DIR):
 					mkdir -p $@
 
@@ -62,6 +74,15 @@ libft:
 run:				all
 					$(PROGRAM) resources/maps/default.ber
 
+runb:				bonus
+					$(PROGRAM) resources/maps/bonus.ber
+
+runv:				all
+					$(VALGRIND) $(PROGRAM) resources/maps/default.ber
+
+runbv:				bonus
+					$(VALGRIND) $(PROGRAM) resources/maps/bonus.ber
+
 clean:
 					$(MAKE) -C $(LIBFT_DIR) clean
 					rm -rf $(OBJ_DIR)
@@ -69,6 +90,7 @@ clean:
 fclean:				clean
 					$(MAKE) -C $(LIBFT_DIR) fclean
 					rm -f $(PROGRAM)
+
 
 # TESTS [REMOVE LATER]
 tests:				required $(TESTS_OBJ_FILES)
@@ -81,7 +103,4 @@ $(TESTS_DIR)/%.o:	$(SRC_DIR)%.c
 runt:				tests
 					$(VALGRIND) $(TESTS)
 
-runv:				all
-					$(VALGRIND) $(PROGRAM) resources/maps/default.ber
-
-.PHONY:	all libft run clean fclean re debug test runt
+.PHONY:	all libft run clean fclean re debug test runt runv runb runbv
