@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 21:22:45 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/28 02:31:09 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/28 03:01:22 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,4 @@ static void	move_player(t_game *game, t_vector2d new_pos)
 	game->map[new_pos.y][new_pos.x] = 'P';
 	game->player.position = new_pos;
 	game->player.steps++;
-	ft_printf("Steps: %d\n", game->player.steps);
 }

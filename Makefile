@@ -21,12 +21,16 @@ FILENAMES			+= load_assets get_map_size render_map
 FILENAMES			+= create_game_data
 FILENAMES			+= get_char_count update_player
 
+FILENAMES_BONUS		= $(addsuffix _bonus, $(FILENAMES))
+
 OBJ_FILES			= $(patsubst %, $(OBJ_DIR)/%.o, $(FILENAMES))
 MAIN				= $(APPS_DIR)/$(NAME).c
 PROGRAM				= $(BIN_DIR)/$(NAME)
+
 # BONUS
-OBJ_BONUS_FILES		= $(patsubst %, $(OBJ_DIR)/%.o, $(FILENAMES))
+OBJ_BONUS_FILES		= $(patsubst %, $(OBJ_DIR)/%.o, $(FILENAMES_BONUS))
 MAIN_BONUS			= $(APPS_DIR)/$(NAME)_bonus.c
+SRC_BONUS_DIR		= ./src_bonus
 
 # TESTS
 TESTS_DIR			= ./tests
@@ -41,8 +45,8 @@ VALGRIND			= valgrind -q --leak-check=full --show-leak-kinds=all \
 all:				$(NAME)
 
 bonus:				required_bonus
-					$(CC) -g $(MAIN) $(OBJ_FILES) $(CFLAGS) $(CFLAGS_LIB) \
-						-o $(PROGRAM)_bonus
+					$(CC) -g $(MAIN_BONUS) $(OBJ_BONUS_FILES) $(CFLAGS) \
+						$(CFLAGS_LIB) -o $(PROGRAM)_bonus
 
 required:			$(OBJ_DIR) $(BIN_DIR) $(OBJ_FILES) libft
 
@@ -62,7 +66,7 @@ $(OBJ_DIR):
 $(OBJ_DIR)/%.o:		$(SRC_DIR)/%.c
 					$(CC) -c -g $< $(CFLAGS) -o $@
 
-$(OBJ_DIR)%.o:		$(BONUS_DIR)/%.c
+$(OBJ_DIR)/%.o:		$(SRC_BONUS_DIR)/%.c
 					$(CC) -c -g $< $(CFLAGS) -o $@
 
 $(BIN_DIR):
@@ -75,7 +79,7 @@ run:				all
 					$(PROGRAM) resources/maps/default.ber
 
 runb:				bonus
-					$(PROGRAM) resources/maps/bonus.ber
+					$(PROGRAM)_bonus resources/maps/bonus.ber
 
 runv:				all
 					$(VALGRIND) $(PROGRAM) resources/maps/default.ber
