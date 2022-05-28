@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 19:00:35 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/28 02:31:28 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/29 01:41:35 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	is_map_objs_count_valid(char **map, t_vector2d map_size)
 
 static int	is_map_char_valid(char c)
 {
-	if (ft_is_char_valid(c, "PEC10") == FALSE)
+	if (ft_is_char_valid(c, "PEC10X") == FALSE)
 	{
 		ft_printf("Error\nThe map has an invalid character\n");
 		return (FALSE);

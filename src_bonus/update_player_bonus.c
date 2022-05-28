@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 21:22:45 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/28 03:01:22 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/29 01:40:50 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ static void	check_new_position(t_game *game, t_vector2d new_pos)
 	else if (next_tile == 'E' && game->coins == 0)
 	{
 		ft_printf("Level Complete!\n");
+		exit_game(game);
+	}
+	else if (next_tile == 'X')
+	{
+		ft_printf("GAME OVER!!!\n");
 		exit_game(game);
 	}
 }
