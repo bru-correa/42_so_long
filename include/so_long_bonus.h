@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:44:02 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/28 22:53:01 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/29 01:21:48 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define TILE_SIZE 64
 # define ERROR 1
 # define FRAME_DELAY 4000
+# define COIN_FRAMES 3
+# define ANIM_DELAY 1
 
 /* Structs */
 
@@ -50,7 +52,7 @@ typedef struct s_assets
 	void	*player_back_img;
 	void	*player_right_img;
 	void	*player_left_img;
-	void	*coin_img;
+	void	**coin_imgs;
 	void	*exit_img;
 	void	*score_img;
 }	t_assets;
@@ -65,6 +67,7 @@ typedef struct s_game
 	char		**map;
 	t_vector2d	map_size;
 	int			wait_for_render;
+	int			anim_counter;
 }	t_game;
 
 int			create_game_data(t_game *game, char *map_path);
@@ -81,5 +84,6 @@ void		render_map(t_game *game);
 void		update_player(t_game *game, int x, int y);
 int			exit_game(t_game *game);
 void		render_hud(t_game *game);
+void		set_animation(t_game *game);
 
 #endif

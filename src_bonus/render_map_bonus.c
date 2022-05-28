@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 18:56:53 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/28 22:53:52 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/29 00:03:47 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 static void	render_current_tile(t_game *game, char tile, t_vector2d position);
 static void	render_img(t_game *game, void *img_ptr, t_vector2d position);
 static void	render_player(t_game *game, t_vector2d position);
+static void	render_coins(t_game *game, t_vector2d position);
 
 void	render_map(t_game *game)
 {
 	t_vector2d	position;
 	char		current_tile;
 
+	set_animation(game);
 	position.y = 0;
 	while (position.y < game->map_size.y)
 	{
@@ -44,9 +46,14 @@ static void	render_current_tile(t_game *game, char tile, t_vector2d position)
 	else if (tile == 'P')
 		render_player(game, position);
 	else if (tile == 'C')
-		render_img(game, game->assets.coin_img, position);
+		render_coins(game, position);
 	else if (tile == 'E')
 		render_img(game, game->assets.exit_img, position);
+}
+
+static void	render_coins(t_game *game, t_vector2d position)
+{
+	render_img(game, game->assets.coin_imgs[game->anim_counter], position);
 }
 
 static void	render_img(t_game *game, void *img_ptr, t_vector2d position)
