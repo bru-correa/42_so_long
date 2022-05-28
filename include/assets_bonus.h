@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 15:15:11 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/29 01:36:34 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/29 01:50:45 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define COIN0_PATH "resources/sprites/coin0.xpm"
 # define COIN1_PATH "resources/sprites/coin1.xpm"
 # define COIN2_PATH "resources/sprites/coin2.xpm"
-# define EXIT_PATH "resources/sprites/exit_closed.xpm"
+# define EXIT_PATH "resources/sprites/exit.xpm"
 # define SCORE_PATH "resources/sprites/score.xpm"
 # define ENEMY_PATH "resources/sprites/enemy.xpm"
 

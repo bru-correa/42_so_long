@@ -80,18 +80,19 @@ libft:
 run:				all
 					$(PROGRAM) resources/maps/default.ber
 
-runb:				bonus
-					$(PROGRAM)_bonus resources/maps/bonus.ber
-
 runv:				all
 					$(VALGRIND) $(PROGRAM) resources/maps/default.ber
 
-runbv:				bonus
+run_bonus:			bonus
+					$(PROGRAM)_bonus resources/maps/bonus.ber
+
+run_bonusv:			bonus
 					$(VALGRIND) $(PROGRAM)_bonus resources/maps/bonus.ber
 
 clean:
 					$(MAKE) -C $(LIBFT_DIR) clean
 					rm -rf $(OBJ_DIR)
+					rm -rf $(BIN_DIR)
 
 fclean:				clean
 					$(MAKE) -C $(LIBFT_DIR) fclean
