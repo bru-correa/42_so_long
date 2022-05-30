@@ -10,3 +10,5 @@ debug
 *.a
 vgcore*
 tests/tests
+so_long
+so_long_bonus
