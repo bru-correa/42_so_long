@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 02:02:42 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/31 02:49:22 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/31 04:02:09 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,6 @@ void	print_win_msg(void)
 {
 	ft_printf("\033[32;5m");
 	print_ascii_art(WIN_MSG);
-	ft_printf("\033[0m");
-}
-
-void	print_game_over_msg(void)
-{
-	ft_printf("\033[31;5m");
-	print_ascii_art(GAME_OVER_MSG);
 	ft_printf("\033[0m");
 }
 

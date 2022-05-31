@@ -103,6 +103,7 @@ clean:
 fclean:				clean
 					@$(MAKE) -C $(LIBFT_DIR) fclean
 					@rm -f $(NAME)
+					@rm -f $(NAME)_bonus
 
 re:					fclean all
 
