@@ -17,7 +17,6 @@ INCLUDE				= -I $(INCLUDE_DIR) -I $(LIBFT_DIR)
 INCLUDE_DIR			= ./include
 SRC_DIR				= ./src
 OBJ_DIR				= ./obj
-APPS_DIR			= ./apps
 LIB_DIR				= ./lib
 
 LIBFT_DIR			= $(LIB_DIR)/libft
@@ -29,7 +28,7 @@ FILENAMES			+= create_game_data
 FILENAMES			+= get_char_count update_player print_ascii_art
 
 OBJ_FILES			= $(patsubst %, $(OBJ_DIR)/%.o, $(FILENAMES))
-MAIN				= $(APPS_DIR)/$(NAME).c
+MAIN				= $(NAME).c
 
 # BONUS
 FILENAMES_BONUS		= $(addsuffix _bonus, $(FILENAMES))
@@ -37,7 +36,7 @@ FILENAMES_BONUS		+= render_hud_bonus load_coin_assets_bonus
 FILENAMES_BONUS		+= set_animation_bonus
 
 OBJ_BONUS_FILES		= $(patsubst %, $(OBJ_DIR)/%.o, $(FILENAMES_BONUS))
-MAIN_BONUS			= $(APPS_DIR)/$(NAME)_bonus.c
+MAIN_BONUS			= $(NAME)_bonus.c
 SRC_BONUS_DIR		= ./src_bonus
 
 # TESTS
@@ -63,7 +62,7 @@ required_bonus:		compile_message $(OBJ_DIR) $(OBJ_BONUS_FILES) libft
 
 debug:				required
 					@$(CC) -g $(MAIN) $(OBJ_FILES) $(CFLAGS) $(CFLAGS_LIB) \
-						-o $(BIN_DIR)/debug
+						-o debug
 
 $(NAME):			required
 					@$(CC) -g $(MAIN) $(OBJ_FILES) $(CFLAGS) $(CFLAGS_LIB) \
