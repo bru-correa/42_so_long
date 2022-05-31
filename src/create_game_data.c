@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 21:35:06 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/28 00:56:34 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/31 03:36:45 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	create_game_data(t_game *game, char *map_path)
 	if (data_status == ERROR)
 		return (ERROR);
 	init_player(game);
+	game->wait_for_render = TRUE;
 	return (0);
 }
 

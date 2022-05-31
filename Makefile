@@ -2,9 +2,9 @@ RED					= \033[1;31m
 YELLOW				= \033[1;33m
 GREEN				= \033[1;32m
 NOCOLOR				= \033[0m
-DONE_MSG			= "$(GREEN)Done!"
-COMPILING_MSG		= "$(YELLOW)Compiling..."
-MAKEFLAGS			+= --silent
+DONE_MSG			= "$(GREEN)Done!$(NOCOLOR)"
+COMPILING_MSG		= "$(YELLOW)Compiling...$(NOCOLOR)"
+CLEANING_MSG		= "$(RED)Cleaning up...$(NOCOLOR)"
 
 NAME				= so_long
 CC					= clang
@@ -26,7 +26,7 @@ FILENAMES			= hooks get_map validate_map
 FILENAMES			+= validate_map_walls validate_map_objs exit_game
 FILENAMES			+= load_assets get_map_size render_map
 FILENAMES			+= create_game_data
-FILENAMES			+= get_char_count update_player
+FILENAMES			+= get_char_count update_player print_ascii_art
 
 OBJ_FILES			= $(patsubst %, $(OBJ_DIR)/%.o, $(FILENAMES))
 MAIN				= $(APPS_DIR)/$(NAME).c
@@ -61,9 +61,6 @@ required:			compile_message $(OBJ_DIR) $(OBJ_FILES) libft
 
 required_bonus:		compile_message $(OBJ_DIR) $(OBJ_BONUS_FILES) libft
 
-compile_message:
-					@echo $(COMPILING_MSG)
-
 debug:				required
 					@$(CC) -g $(MAIN) $(OBJ_FILES) $(CFLAGS) $(CFLAGS_LIB) \
 						-o $(BIN_DIR)/debug
@@ -86,19 +83,19 @@ libft:
 					@$(MAKE) -C $(LIBFT_DIR)
 
 run:				all
-					@$(NAME) resources/maps/default.ber
+					@./$(NAME) resources/maps/default.ber
 
 runv:				all
-					@$(VALGRIND) $(NAME) resources/maps/default.ber
+					$(VALGRIND) ./$(NAME) resources/maps/default.ber
 
 run_bonus:			bonus
-					@$(NAME)_bonus resources/maps/bonus.ber
+					@./$(NAME)_bonus resources/maps/bonus.ber
 
 run_bonusv:			bonus
-					@$(VALGRIND) $(NAME)_bonus resources/maps/bonus.ber
+					$(VALGRIND) ./$(NAME)_bonus resources/maps/bonus.ber
 
 clean:
-					@echo "$(RED)Cleaning up..."
+					@echo $(CLEANING_MSG)
 					@$(MAKE) -C $(LIBFT_DIR) clean
 					@rm -rf $(OBJ_DIR)
 					@rm -rf $(BIN_DIR)
@@ -109,6 +106,9 @@ fclean:				clean
 
 re:					fclean all
 
+compile_message:
+					@echo $(COMPILING_MSG)
+
 # TESTS [REMOVE LATER]
 tests:				required $(TESTS_OBJ_FILES)
 					@$(CC) -g $(TESTS_MAIN) $(OBJ_FILES) $(TESTS_OBJ_FILES) \
@@ -118,6 +118,6 @@ $(TESTS_DIR)/%.o:	$(SRC_DIR)%.c
 					@$(CC) -c -g $< $(CFLAGS) $(TESTS_CFLAGS) -o $@
 
 runt:				tests
-					@$(VALGRIND) $(TESTS)
+					$(VALGRIND) $(TESTS)
 
 .PHONY:	all libft run clean fclean re debug test runt runv runb runbv

@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 19:21:21 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/28 00:36:39 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/31 03:08:56 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	handle_keypress(int keysym, t_game *game)
 
 int	update(t_game *game)
 {
-	static int	frame_counter = 0;
+	static int	frame_counter = FRAME_DELAY;
 
 	if (frame_counter == FRAME_DELAY)
 	{

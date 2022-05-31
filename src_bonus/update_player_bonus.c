@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 21:22:45 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/29 01:40:50 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/31 03:47:09 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	check_new_position(t_game *game, t_vector2d new_pos);
 static void	move_player(t_game *game, t_vector2d new_pos);
+static void	increase_steps(t_game *game);
 
 void	update_player(t_game *game, int x, int y)
 {
@@ -41,12 +42,14 @@ static void	check_new_position(t_game *game, t_vector2d new_pos)
 	}
 	else if (next_tile == 'E' && game->coins == 0)
 	{
-		ft_printf("Level Complete!\n");
+		increase_steps(game);
+		print_win_msg();
 		exit_game(game);
 	}
 	else if (next_tile == 'X')
 	{
-		ft_printf("GAME OVER!!!\n");
+		increase_steps(game);
+		print_game_over_msg();
 		exit_game(game);
 	}
 }
@@ -56,5 +59,11 @@ static void	move_player(t_game *game, t_vector2d new_pos)
 	game->map[game->player.position.y][game->player.position.x] = '0';
 	game->map[new_pos.y][new_pos.x] = 'P';
 	game->player.position = new_pos;
+	increase_steps(game);
+}
+
+static void	increase_steps(t_game *game)
+{
 	game->player.steps++;
+	ft_printf("Steps: \033[32;1m%d\n\033[0m", game->player.steps);
 }

@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 15:15:11 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/29 01:50:45 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/31 03:48:56 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # define EXIT_PATH "resources/sprites/exit.xpm"
 # define SCORE_PATH "resources/sprites/score.xpm"
 # define ENEMY_PATH "resources/sprites/enemy.xpm"
+
+# define WIN_MSG "resources/ascii_art/you_win.txt"
+# define GAME_OVER_MSG "resources/ascii_art/game_over.txt"
 
 # define SCORE_W 64
 # define SCORE_H 32
