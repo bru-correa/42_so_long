@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 15:08:14 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/28 00:59:02 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/31 20:48:09 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	load_assets(t_game *game)
 	game->assets.player_right_img = create_img_ptr(game, PLAYER_RIGHT_PATH);
 	game->assets.player_left_img = create_img_ptr(game, PLAYER_LEFT_PATH);
 	game->assets.coin_img = create_img_ptr(game, COIN_PATH);
-	game->assets.exit_img = create_img_ptr(game, EXIT_PATH);
+	game->assets.exit_open_img = create_img_ptr(game, EXIT_OPEN_PATH);
+	game->assets.exit_closed_img = create_img_ptr(game, EXIT_CLOSED_PATH);
 	return (check_assets(game->assets));
 }
 
@@ -38,7 +39,8 @@ void	free_assets(t_game *game)
 	mlx_destroy_image(game->mlx_ptr, game->assets.player_right_img);
 	mlx_destroy_image(game->mlx_ptr, game->assets.player_left_img);
 	mlx_destroy_image(game->mlx_ptr, game->assets.coin_img);
-	mlx_destroy_image(game->mlx_ptr, game->assets.exit_img);
+	mlx_destroy_image(game->mlx_ptr, game->assets.exit_open_img);
+	mlx_destroy_image(game->mlx_ptr, game->assets.exit_closed_img);
 }
 
 static void	*create_img_ptr(t_game *game, char *relative_path)
@@ -66,7 +68,9 @@ static int	check_assets(t_assets assets)
 		return (ERROR);
 	if (assets.coin_img == NULL)
 		return (ERROR);
-	if (assets.exit_img == NULL)
+	if (assets.exit_open_img == NULL)
+		return (ERROR);
+	if (assets.exit_closed_img == NULL)
 		return (ERROR);
 	return (0);
 }

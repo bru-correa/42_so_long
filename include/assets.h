@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 15:15:11 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/31 04:02:31 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/31 20:45:38 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 # define PLAYER_RIGHT_PATH "resources/sprites/link_right.xpm"
 # define PLAYER_LEFT_PATH "resources/sprites/link_left.xpm"
 # define COIN_PATH "resources/sprites/coin0.xpm"
-# define EXIT_PATH "resources/sprites/exit.xpm"
+# define EXIT_CLOSED_PATH "resources/sprites/exit_closed.xpm"
+# define EXIT_OPEN_PATH "resources/sprites/exit_open.xpm"
 
 # define WIN_MSG "resources/ascii_art/you_win.txt"
 

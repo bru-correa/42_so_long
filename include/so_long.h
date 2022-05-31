@@ -6,7 +6,7 @@
 /*   By: bcorrea- <bruuh.cor@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:44:02 by bcorrea-          #+#    #+#             */
-/*   Updated: 2022/05/31 04:02:43 by bcorrea-         ###   ########.fr       */
+/*   Updated: 2022/05/31 20:46:33 by bcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ typedef struct s_assets
 	void	*player_right_img;
 	void	*player_left_img;
 	void	*coin_img;
-	void	*exit_img;
+	void	*exit_open_img;
+	void	*exit_closed_img;
 }	t_assets;
 
 typedef struct s_game
