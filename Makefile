@@ -48,7 +48,6 @@ TESTS_OBJ_FILES		= $(patsubst %, $(TESTS_DIR)/%.o, $(TESTS_FILENAMES))
 TESTS				= $(TESTS_DIR)/tests
 VALGRIND			= valgrind --leak-check=full --show-leak-kinds=all
 VALGRIND			+= --track-origins=yes --quiet --tool=memcheck
-VALGRIND			+= --keep-debuginfo=yes
 
 all:				$(NAME)
 
